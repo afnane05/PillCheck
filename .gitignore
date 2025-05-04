@@ -1,0 +1,12 @@
+/build/
+/dist/
+/nbproject/private/
+/*.class
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+.idea/
+*.iml
+
