@@ -19,5 +19,6 @@ A JavaFX desktop application for doctors to manage patients, appointments, and t
 3. Run the application
 
 ## Contributors
-- Afnan (Team Lead)
-- [Add your teammates here]
+- Afnane
+- Taha
+- Romaissae
