@@ -1,6 +1,7 @@
 package com.pillcheck.medicalapp.Controller;
 
 import com.pillcheck.medicalapp.Model.Patient;
+import com.pillcheck.medicalapp.Model.PatientDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,12 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PatientController implements Initializable {
@@ -90,6 +93,9 @@ public class PatientController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadPatientsFromDatabase();
+        
+
         //  addPatientButton
         FontIcon icon1 = new FontIcon("fas-user-plus");
         icon1.setIconSize(20); // Adjust as needed
@@ -140,5 +146,19 @@ public class PatientController implements Initializable {
 
         parametreButton.setGraphic(icon8);
         parametreButton.setText(""); // hide the text
+    }
+    private void loadPatientsFromDatabase() {
+        List<Patient> patients = PatientDAO.getAllPatients(); // Example method
+        for (Patient patient : patients) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
+                Pane card = loader.load();
+                PatientCardIconController cardController = loader.getController();
+                cardController.setPatientInfo(patient,card);  // custom method to set name, etc.
+                patientCardsContainer.getChildren().add(card);  // your FlowPane
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

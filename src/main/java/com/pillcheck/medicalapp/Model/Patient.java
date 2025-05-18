@@ -22,6 +22,9 @@ public class Patient {
         this.sexe = sexe;
         this.nomTraitement = nomTraitement;
     }
+    public Patient(){
+        
+    }
 
     // Getters
     public String getCin() { return cin; }
@@ -32,4 +35,37 @@ public class Patient {
     public String getEtat() { return etat; }
     public String getSexe() { return sexe; }
     public String getNomTraitement() { return nomTraitement; }
+        // Setters
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setDateNaissance(LocalDate dateNaissance) {
+        this.dateNaiss = dateNaissance;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
+    public void setNomTraitement(String nomTraitement) {
+        this.nomTraitement = nomTraitement;
+    }
+
 }
