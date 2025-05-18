@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="348.0" prefWidth="252.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientCardsController">
+   <children>
+      <ImageView fitHeight="43.0" fitWidth="69.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../patient_icon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="maladieLabel" layoutX="20.0" layoutY="254.0" text="dateNaissance:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="maladieLabel1" layoutX="33.0" layoutY="87.0" text="CIN :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="maladieLabel2" layoutX="36.0" layoutY="168.0" text="telephone :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="maladieLabel21" layoutX="37.0" layoutY="211.0" text="Etat :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="maladieLabel22" layoutX="35.0" layoutY="127.0" text="Sexe :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="maladieLabel23" layoutX="26.0" layoutY="294.0" text="nomTraitement :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Line endX="145.0" layoutX="107.0" layoutY="66.0" startX="-106.0" />
+      <TextField fx:id="cinLabel" layoutX="85.0" layoutY="84.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="etatLabel" layoutX="87.0" layoutY="208.0" prefHeight="25.0" prefWidth="137.0" />
+      <TextField fx:id="dateNaissanceLabel" layoutX="124.0" layoutY="252.0" prefHeight="25.0" prefWidth="102.0" />
+      <TextField fx:id="telephoneLabel" layoutX="112.0" layoutY="165.0" prefHeight="25.0" prefWidth="114.0" />
+      <TextField fx:id="sexeLabel" layoutX="86.0" layoutY="124.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="traitementLabel" layoutX="135.0" layoutY="291.0" prefHeight="25.0" prefWidth="91.0" />
+      <TextField fx:id="nomLabel" layoutX="52.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="prenomLabel" layoutX="143.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</Pane>
