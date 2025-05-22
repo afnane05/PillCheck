@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="cardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="106.0" prefWidth="179.0" style="-fx-background-radius: 50; -fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientCardIconController">
+<Pane fx:id="cardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="111.0" prefWidth="190.0" style="-fx-background-radius: 50; -fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientCardIconController">
    <children>
       <ImageView fitHeight="55.0" fitWidth="69.0" layoutX="3.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../patient_icon.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nomField" layoutX="62.0" layoutY="21.0" prefHeight="25.0" prefWidth="80.0" />
-      <TextField fx:id="prenomField" layoutX="62.0" layoutY="57.0" prefHeight="16.0" prefWidth="80.0" />
+      <TextField fx:id="nomField" layoutX="60.0" layoutY="25.0" prefHeight="25.0" prefWidth="80.0" />
+      <TextField fx:id="prenomField" layoutX="60.0" layoutY="66.0" prefHeight="22.0" prefWidth="80.0" />
+      <MenuButton contentDisplay="RIGHT" layoutX="140.0" layoutY="11.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="22.0" style="-fx-background-color: #ffffff;">
+        <items>
+          <MenuItem fx:id="modifyPatient" mnemonicParsing="false" onAction="#handleModify" text="Modifier" />
+          <MenuItem fx:id="deletePatient" mnemonicParsing="false" onAction="#handleDelete" text="Supprimer" />
+        </items>
+      </MenuButton>
    </children>
 </Pane>

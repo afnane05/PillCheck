@@ -1,0 +1,3 @@
+.canvas-gradient{
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #c0cadd , #f16649);
+}

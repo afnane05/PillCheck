@@ -16,7 +16,7 @@ public class PatientDAO {
             stmt.setString(1, patient.getCin());
             stmt.setString(2, patient.getNom());
             stmt.setString(3, patient.getPrenom());
-            stmt.setDate(4, java.sql.Date.valueOf(patient.getDateNaissance()));
+            stmt.setDate(4, Date.valueOf(patient.getDateNaissance()));
             stmt.setString(5, patient.getTelephone());
             stmt.setString(6, patient.getEtat());
             stmt.setString(7, patient.getSexe());
@@ -60,5 +60,44 @@ public class PatientDAO {
 
         return patients;
     }
-}
 
+    // Delete a patient by CIN
+    public static boolean supprimerPatient(String cin) {
+        String sql = "DELETE FROM patient WHERE cin = ?";
+
+        try (Connection conn = BaseDonneeConnexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, cin);
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Update an existing patient
+    public boolean modifierPatient(Patient patient) {
+        String sql = "UPDATE patient SET nom = ?, prenom = ?, date_naissance = ?, telephone = ?, etat = ?, sexe = ?, traitement = ? WHERE cin = ?";
+
+        try (Connection conn = BaseDonneeConnexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, patient.getNom());
+            stmt.setString(2, patient.getPrenom());
+            stmt.setDate(3, Date.valueOf(patient.getDateNaissance()));
+            stmt.setString(4, patient.getTelephone());
+            stmt.setString(5, patient.getEtat());
+            stmt.setString(6, patient.getSexe());
+            stmt.setString(7, patient.getNomTraitement());
+            stmt.setString(8, patient.getCin());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}

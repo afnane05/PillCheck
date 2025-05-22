@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,28 +31,31 @@ public class PatientController implements Initializable {
 
     @FXML
     private Button addPatientButton;
-    
+
     @FXML
     private Button acceuilButton;
-    
+
     @FXML
     private Button mesPatientButton;
-    
+
     @FXML
     private Button mesTraitementButton;
-    
+
     @FXML
     private Button mesRdvButton;
-    
+
     @FXML
     private Button statistiqueButton;
-    
+
     @FXML
     private Button compteButton;
-    
+
     @FXML
     private Button parametreButton;
-  
+
+    @FXML
+    private Button refreshButton;
+
     @FXML
     public void handleAddPatientButton() {
         try {
@@ -94,71 +98,72 @@ public class PatientController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadPatientsFromDatabase();
-        
 
-        //  addPatientButton
-        FontIcon icon1 = new FontIcon("fas-user-plus");
-        icon1.setIconSize(20); // Adjust as needed
-
+        // Icons
+        FontIcon icon1 = new FontIcon(FontAwesomeSolid.USER_PLUS);
+        icon1.setIconSize(20);
         addPatientButton.setGraphic(icon1);
-        addPatientButton.setText(""); // hide the text
-        
-        //  acceuilButtton
-        FontIcon icon2 = new FontIcon("fas-home");
-        icon2.setIconSize(20); // Adjust as needed
+        addPatientButton.setText("");
 
+        FontIcon icon2 = new FontIcon(FontAwesomeSolid.HOME);
+        icon2.setIconSize(20);
         acceuilButton.setGraphic(icon2);
-        acceuilButton.setText(""); // hide the text
-        
-        //  mesPatientButtton
-        FontIcon icon3 = new FontIcon("fas-hospital-user");
-        icon3.setIconSize(20); // Adjust as needed
+        acceuilButton.setText("");
 
+        FontIcon icon3 = new FontIcon(FontAwesomeSolid.HOSPITAL_USER);
+        icon3.setIconSize(20);
         mesPatientButton.setGraphic(icon3);
-        mesPatientButton.setText(""); // hide the text
-        //  mesTraitementButton
-        FontIcon icon4 = new FontIcon("fas-stethoscope");
-        icon4.setIconSize(20); // Adjust as needed
+        mesPatientButton.setText("");
 
+        FontIcon icon4 = new FontIcon(FontAwesomeSolid.STETHOSCOPE);
+        icon4.setIconSize(20);
         mesTraitementButton.setGraphic(icon4);
-        mesTraitementButton.setText(""); // hide the text
-        //  mesRdvButton
-        FontIcon icon5 = new FontIcon("fas-calendar-check");
-        icon5.setIconSize(20); // Adjust as needed
+        mesTraitementButton.setText("");
 
+        FontIcon icon5 = new FontIcon(FontAwesomeSolid.CALENDAR_CHECK);
+        icon5.setIconSize(20);
         mesRdvButton.setGraphic(icon5);
-        mesRdvButton.setText(""); // hide the text
-        //  statistiqueButton
-        FontIcon icon6 = new FontIcon("fas-chart-bar");
-        icon6.setIconSize(20); // Adjust as needed
+        mesRdvButton.setText("");
 
+        FontIcon icon6 = new FontIcon(FontAwesomeSolid.CHART_BAR);
+        icon6.setIconSize(20);
         statistiqueButton.setGraphic(icon6);
-        statistiqueButton.setText(""); // hide the text
-        //  compteButton
-        FontIcon icon7 = new FontIcon("fas-user-circle");
-        icon7.setIconSize(20); // Adjust as needed
+        statistiqueButton.setText("");
 
+        FontIcon icon7 = new FontIcon(FontAwesomeSolid.USER_CIRCLE);
+        icon7.setIconSize(20);
         compteButton.setGraphic(icon7);
-        compteButton.setText(""); // hide the text
-        //  parametreButton
-        FontIcon icon8 = new FontIcon("fas-cog");
-        icon8.setIconSize(20); // Adjust as needed
+        compteButton.setText("");
 
+        FontIcon icon8 = new FontIcon(FontAwesomeSolid.COG);
+        icon8.setIconSize(20);
         parametreButton.setGraphic(icon8);
-        parametreButton.setText(""); // hide the text
+        parametreButton.setText("");
+
+        FontIcon icon9 = new FontIcon(FontAwesomeSolid.SYNC_ALT);
+        icon9.setIconSize(20);
+        refreshButton.setGraphic(icon9);
+        refreshButton.setText("");
     }
+
     private void loadPatientsFromDatabase() {
-        List<Patient> patients = PatientDAO.getAllPatients(); // Example method
+        patientCardsContainer.getChildren().clear(); // Clear existing cards before loading new ones
+        List<Patient> patients = PatientDAO.getAllPatients(); // Fetch from DB
         for (Patient patient : patients) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
                 Pane card = loader.load();
                 PatientCardIconController cardController = loader.getController();
-                cardController.setPatientInfo(patient,card);  // custom method to set name, etc.
-                patientCardsContainer.getChildren().add(card);  // your FlowPane
+                cardController.setPatientInfo(patient, card);
+                patientCardsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    public void handleRefresh() {
+        loadPatientsFromDatabase();
     }
 }

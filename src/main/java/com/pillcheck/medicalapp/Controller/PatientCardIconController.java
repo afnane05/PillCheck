@@ -1,6 +1,7 @@
 package com.pillcheck.medicalapp.Controller;
 
 import com.pillcheck.medicalapp.Model.Patient;
+import com.pillcheck.medicalapp.Model.PatientDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,8 +11,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Optional;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,6 +29,10 @@ public class PatientCardIconController {
     @FXML private TextField prenomField;
     @FXML private Pane cardContainer;
     @FXML private Button addPatientButton ;  
+    @FXML private MenuItem deletePatient;
+    @FXML private MenuItem modifyItem;
+    @FXML private MenuButton optionsMenuButton;
+
     private Patient patient;
     private PatientController parentController;
     private Node rootNode;  // Add this field
@@ -71,6 +82,45 @@ public class PatientCardIconController {
             e.printStackTrace();
         }
     }
+    
+    @FXML
+
+    private void handleDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment supprimer ce patient ?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            boolean success = PatientDAO.supprimerPatient(patient.getCin());
+            
+        }
+}
+
+
+    @FXML
+    private void handleModify() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddPatientForm.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            AddPatientFormController controller = loader.getController();
+            controller.prefillForm(patient); // You'll implement this method
+            
+            controller.setParentController(parentController); // To refresh cards
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Modifier Patient");
+            stage.setScene(scene);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     
