@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="35.0" />
+                  <Insets left="35.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="mesPatientButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes patients" wrapText="true">
@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="mesTraitementButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes ttraitements" wrapText="true">
@@ -66,7 +66,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="9.0" />
+                  <Insets left="9.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous" wrapText="true">
@@ -82,7 +82,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="17.0" />
+                  <Insets left="17.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique" wrapText="true">
@@ -98,7 +98,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="23.0" />
+                  <Insets left="23.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte" wrapText="true">
@@ -114,7 +114,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="33.0" />
+                  <Insets left="33.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Paramètre" wrapText="true">
@@ -130,7 +130,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="23.0" />
+                  <Insets left="23.0" top="5.0" />
                </VBox.margin>
             </Label>
          </children>
@@ -166,6 +166,6 @@
          </children>
       </HBox>
       <Button fx:id="addPatientButton" layoutX="1142.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="79.0" prefWidth="73.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="refreshButton" layoutX="1242.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="39.0" text="Button" />
+      <Button fx:id="refreshButton" layoutX="1242.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #e8e1e1;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
    </children>
 </Pane>

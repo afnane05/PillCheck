@@ -16,17 +16,17 @@
          </image>
       </ImageView>
       <Button fx:id="mesPatientsButton" layoutX="340.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleMesPatients" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="mesTraitementButton" layoutX="576.0" layoutY="267.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="mesRdvButton" layoutX="816.0" layoutY="267.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="statistiqueButton" layoutX="343.0" layoutY="418.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="compteButton" layoutX="579.0" layoutY="419.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="parametreButton" layoutX="819.0" layoutY="419.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
+      <Button fx:id="mesTraitementsButton" layoutX="576.0" layoutY="267.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" wrapText="true" />
+      <Button fx:id="mesRdvButton" layoutX="816.0" layoutY="267.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" wrapText="true" />
+      <Button fx:id="statistiqueButton" layoutX="343.0" layoutY="418.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" wrapText="true" />
+      <Button fx:id="compteButton" layoutX="579.0" layoutY="419.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" wrapText="true" />
+      <Button fx:id="parametreButton" layoutX="819.0" layoutY="419.0" mnemonicParsing="false" prefHeight="129.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" wrapText="true" />
       <Label layoutX="452.0" layoutY="66.0" prefHeight="58.0" prefWidth="224.0" text="Bienvenu, ">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" editable="false" layoutX="651.0" layoutY="53.0" prefHeight="29.0" prefWidth="227.0" style="-fx-background-color: #e8e1e1;">
+      <TextField fx:id="nameField" editable="false" layoutX="634.0" layoutY="53.0" prefHeight="29.0" prefWidth="227.0" style="-fx-background-color: #e8e1e1;">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>

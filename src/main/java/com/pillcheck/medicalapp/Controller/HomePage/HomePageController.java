@@ -14,14 +14,21 @@ import javafx.stage.Stage;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class HomePageController{
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+
+
+public class HomePageController implements Initializable{
 
 
     @FXML
-    private Button mesPatientButton;
+    private Button mesPatientsButton;
 
     @FXML
-    private Button mesTraitementButton;
+    private Button mesTraitementsButton;
 
     @FXML
     private Button mesRdvButton;
@@ -38,38 +45,39 @@ public class HomePageController{
     @FXML
     private TextField nameField;
     
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         
 
         // Icons
 
         FontIcon icon3 = new FontIcon(FontAwesomeSolid.HOSPITAL_USER);
-        icon3.setIconSize(20);
-        mesPatientButton.setGraphic(icon3);
-        mesPatientButton.setText("");
+        icon3.setIconSize(40);
+        mesPatientsButton.setGraphic(icon3);
+        mesPatientsButton.setText("");
 
         FontIcon icon4 = new FontIcon(FontAwesomeSolid.STETHOSCOPE);
-        icon4.setIconSize(20);
-        mesTraitementButton.setGraphic(icon4);
-        mesTraitementButton.setText("");
+        icon4.setIconSize(40);
+        mesTraitementsButton.setGraphic(icon4);
+        mesTraitementsButton.setText("");
 
         FontIcon icon5 = new FontIcon(FontAwesomeSolid.CALENDAR_CHECK);
-        icon5.setIconSize(20);
+        icon5.setIconSize(40);
         mesRdvButton.setGraphic(icon5);
         mesRdvButton.setText("");
 
         FontIcon icon6 = new FontIcon(FontAwesomeSolid.CHART_BAR);
-        icon6.setIconSize(20);
+        icon6.setIconSize(40);
         statistiqueButton.setGraphic(icon6);
         statistiqueButton.setText("");
 
         FontIcon icon7 = new FontIcon(FontAwesomeSolid.USER_CIRCLE);
-        icon7.setIconSize(20);
+        icon7.setIconSize(40);
         compteButton.setGraphic(icon7);
         compteButton.setText("");
 
         FontIcon icon8 = new FontIcon(FontAwesomeSolid.COG);
-        icon8.setIconSize(20);
+        icon8.setIconSize(40);
         parametreButton.setGraphic(icon8);
         parametreButton.setText("");
 

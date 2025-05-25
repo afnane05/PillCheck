@@ -47,14 +47,14 @@
          </font>
       </Label>
       <Line endX="145.0" layoutX="107.0" layoutY="66.0" startX="-106.0" />
-      <TextField fx:id="cinLabel" layoutX="85.0" layoutY="84.0" prefHeight="25.0" prefWidth="129.0" />
-      <TextField fx:id="etatLabel" layoutX="87.0" layoutY="208.0" prefHeight="25.0" prefWidth="137.0" />
-      <TextField fx:id="dateNaissanceLabel" layoutX="124.0" layoutY="252.0" prefHeight="25.0" prefWidth="102.0" />
-      <TextField fx:id="telephoneLabel" layoutX="112.0" layoutY="165.0" prefHeight="25.0" prefWidth="114.0" />
-      <TextField fx:id="sexeLabel" layoutX="86.0" layoutY="124.0" prefHeight="25.0" prefWidth="129.0" />
-      <TextField fx:id="traitementLabel" layoutX="135.0" layoutY="291.0" prefHeight="25.0" prefWidth="91.0" />
-      <TextField fx:id="nomLabel" layoutX="52.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
-      <TextField fx:id="prenomLabel" layoutX="143.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="cinLabel" editable="false" layoutX="85.0" layoutY="84.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="etatLabel" editable="false" layoutX="87.0" layoutY="208.0" prefHeight="25.0" prefWidth="137.0" />
+      <TextField fx:id="dateNaissanceLabel" editable="false" layoutX="124.0" layoutY="252.0" prefHeight="25.0" prefWidth="102.0" />
+      <TextField fx:id="telephoneLabel" editable="false" layoutX="112.0" layoutY="165.0" prefHeight="25.0" prefWidth="114.0" />
+      <TextField fx:id="sexeLabel" editable="false" layoutX="86.0" layoutY="124.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="traitementLabel" editable="false" layoutX="135.0" layoutY="291.0" prefHeight="25.0" prefWidth="91.0" />
+      <TextField fx:id="nomLabel" editable="false" layoutX="52.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="prenomLabel" editable="false" layoutX="143.0" layoutY="24.0" prefHeight="25.0" prefWidth="85.0" />
    </children>
    <opaqueInsets>
       <Insets />
