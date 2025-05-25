@@ -1,0 +1,17 @@
+.shiny-button {
+    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 4);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.shiny-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #00f2fe, #4facfe);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 15, 0.2, 0, 6);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}

@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="744.0" prefWidth="1320.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="744.0" prefWidth="1320.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Patient.PatientController">
    <children>
       <VBox layoutX="38.0" layoutY="122.0" prefHeight="603.0" prefWidth="118.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;">
          <children>
-            <Button fx:id="acceuilButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Acceuil" wrapText="true">
+            <Button fx:id="acceuilButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Acceuil" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -37,7 +37,7 @@
                   <Insets left="35.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesPatientButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Mes patients" wrapText="true">
+            <Button fx:id="mesPatientButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes patients" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -53,7 +53,7 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesTraitementButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Mes ttraitements" wrapText="true">
+            <Button fx:id="mesTraitementButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes ttraitements" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -69,7 +69,7 @@
                   <Insets left="9.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Rendez-vous" wrapText="true">
+            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -85,7 +85,7 @@
                   <Insets left="17.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Statistique" wrapText="true">
+            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -101,7 +101,7 @@
                   <Insets left="23.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Compte" wrapText="true">
+            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -117,7 +117,7 @@
                   <Insets left="33.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Paramètre" wrapText="true">
+            <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Paramètre" wrapText="true">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -165,7 +165,7 @@
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="addPatientButton" layoutX="1142.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="79.0" prefWidth="73.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" text="Button" />
+      <Button fx:id="addPatientButton" layoutX="1142.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="79.0" prefWidth="73.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
       <Button fx:id="refreshButton" layoutX="1242.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="39.0" text="Button" />
    </children>
 </Pane>

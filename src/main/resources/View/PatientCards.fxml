@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="348.0" prefWidth="252.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientCardsController">
+<Pane prefHeight="348.0" prefWidth="252.0" style="-fx-background-color: #c2d3e0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Patient.PatientCardsController">
    <children>
       <ImageView fitHeight="43.0" fitWidth="69.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>

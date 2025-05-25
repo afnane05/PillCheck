@@ -1,7 +1,7 @@
-package com.pillcheck.medicalapp.Controller;
+package com.pillcheck.medicalapp.Controller.Patient;
 
-import com.pillcheck.medicalapp.Model.PatientDAO;
-import com.pillcheck.medicalapp.Model.Patient;
+import com.pillcheck.medicalapp.Model.PatientModels.PatientDAO;
+import com.pillcheck.medicalapp.Model.PatientModels.Patient;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;

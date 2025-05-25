@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="cardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="111.0" prefWidth="190.0" style="-fx-background-radius: 50; -fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.PatientCardIconController">
+<Pane fx:id="cardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="111.0" prefWidth="190.0" style="-fx-background-radius: 50; -fx-background-color: #ffffff;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Patient.PatientCardIconController">
    <children>
       <ImageView fitHeight="55.0" fitWidth="69.0" layoutX="3.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>

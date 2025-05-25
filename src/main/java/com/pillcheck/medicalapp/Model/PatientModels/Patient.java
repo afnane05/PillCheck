@@ -1,4 +1,4 @@
-package com.pillcheck.medicalapp.Model;
+package com.pillcheck.medicalapp.Model.PatientModels;
 
 import java.time.LocalDate;
 

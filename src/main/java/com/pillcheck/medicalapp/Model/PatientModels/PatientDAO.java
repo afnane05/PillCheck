@@ -1,5 +1,7 @@
-package com.pillcheck.medicalapp.Model;
+package com.pillcheck.medicalapp.Model.PatientModels;
 
+import com.pillcheck.medicalapp.Model.BaseDonneeConnexion;
+import com.pillcheck.medicalapp.Model.PatientModels.Patient;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

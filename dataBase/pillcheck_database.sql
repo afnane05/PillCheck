@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 17, 2025 at 09:34 AM
+-- Generation Time: May 25, 2025 at 01:59 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -39,13 +39,6 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `traitement` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`cin`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`cin`, `nom`, `prenom`, `date_naissance`, `telephone`, `etat`, `sexe`, `traitement`) VALUES
-('234567', 'hfdkfjk', 'jdki', '2025-05-06', '2345678', 'kjhgdfij', 'Femme', 'Traitement C');
 
 -- --------------------------------------------------------
 
@@ -95,13 +88,18 @@ CREATE TABLE IF NOT EXISTS `traitement` (
 
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `ID_User` int NOT NULL,
-  `NOM` varchar(10) NOT NULL,
-  `EMAIL` varchar(20) NOT NULL,
-  `MOT_DE_PASSE` varchar(50) NOT NULL,
-  `ROLE` enum('medecin','infermiere','secretaire') DEFAULT NULL,
-  PRIMARY KEY (`ID_User`)
+  `nom` varchar(10) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `motDePasse` varchar(50) NOT NULL,
+  PRIMARY KEY (`nom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`nom`, `email`, `motDePasse`) VALUES
+('afnane', 'afnane@gmail.com', 'afnanecoco');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
