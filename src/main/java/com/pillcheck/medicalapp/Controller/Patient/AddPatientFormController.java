@@ -21,9 +21,9 @@ public class AddPatientFormController {
     @FXML private ToggleGroup sexeGroup;
     @FXML private ChoiceBox<String> traitementChoiceBox;
     @FXML private DatePicker dateNaissancePicker;
-    @FXML private Button ajouterButton ;
+    @FXML private Button ajouterButton;
     private PatientController parentController;
-    private Patient patient ;
+    private Patient patient; // Patient à modifier (null si c'est un ajout)
 
     public void setParentController(PatientController controller) {
         this.parentController = controller;
@@ -38,7 +38,6 @@ public class AddPatientFormController {
         traitementChoiceBox.getItems().addAll("Renomicine", "Doliprane", "Spasfon");
     }
 
-    
     @FXML
     private void handleAddPatient(ActionEvent event) {
         // Récupération des champs
@@ -63,16 +62,25 @@ public class AddPatientFormController {
             return;
         }
 
-        // Création de l'objet Patient
-        Patient updatedPatient = new Patient(cin, nom, prenom, dateNaissance, telephone, etat, sexe, traitement);
         PatientDAO patientDAO = new PatientDAO();
-
         boolean success;
 
         if (this.patient != null) {
-            success = patientDAO.modifierPatient(updatedPatient);
+            // Mode modification - on met à jour le patient existant
+            this.patient.setCin(cin);
+            this.patient.setNom(nom);
+            this.patient.setPrenom(prenom);
+            this.patient.setDateNaissance(dateNaissance);
+            this.patient.setTelephone(telephone);
+            this.patient.setEtat(etat);
+            this.patient.setSexe(sexe);
+            this.patient.setNomTraitement(traitement);
+            
+            success = patientDAO.modifierPatient(this.patient);
         } else {
-            success = patientDAO.ajouterPatient(updatedPatient);
+            // Mode ajout - on crée un nouveau patient
+            Patient nouveauPatient = new Patient(cin, nom, prenom, dateNaissance, telephone, etat, sexe, traitement);
+            success = patientDAO.ajouterPatient(nouveauPatient);
         }
 
         if (success) {
@@ -82,7 +90,6 @@ public class AddPatientFormController {
             showAlert("Erreur", "Une erreur est survenue lors de l'enregistrement du patient.");
         }
     }
-
 
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,26 +103,28 @@ public class AddPatientFormController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     public void prefillForm(Patient patient) {
-        this.patient = patient; // Store the reference if needed later (e.g. for update logic)
+        this.patient = patient; // Stocker la référence du patient à modifier
 
         cinField.setText(patient.getCin());
-        cinField.setDisable(true); // Primary key, should not be changed
+        cinField.setDisable(true); // Primary key, ne doit pas être changé
 
         nomField.setText(patient.getNom());
         prenomField.setText(patient.getPrenom());
         dateNaissancePicker.setValue(patient.getDateNaissance());
         telephoneField.setText(patient.getTelephone());
         etatField.setText(patient.getEtat());
+        
         if ("Homme".equalsIgnoreCase(patient.getSexe())) {
             sexeGroup.selectToggle(hommeRadio);
         } else if ("Femme".equalsIgnoreCase(patient.getSexe())) {
             sexeGroup.selectToggle(femmeRadio);
         }
+        
         traitementChoiceBox.setValue(patient.getNomTraitement());
 
-        // Optional: Change the submit button label from "Ajouter" to "Modifier"
+        // Changer le texte du bouton de "Ajouter" à "Modifier"
         ajouterButton.setText("Modifier");
     }
-
 }

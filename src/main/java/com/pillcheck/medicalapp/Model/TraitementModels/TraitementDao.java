@@ -9,15 +9,9 @@ import java.util.List;
 
 public class TraitementDao {
     
-  // private Connection getConnection() throws SQLException {
-    //    return DriverManager.getConnection("jdbc:mysql://localhost:3306/pillcheck", "username", "password");
-    //}
-    
     public boolean ajouterTraitement(Traitement traitement) {
-        String sql = "INSERT INTO traitement (NOM_TRAITEMENT, TYPE_Traitement, MALADIE, DESCRIPTION, DATE_DEBUT, DATE_FIN, DUREE_ESTIMEE, POSOLOGIE,  EFFETS_SECONDAIRES,ETAT, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+        String sql = "INSERT INTO traitement (NOM_TRAITEMENT, TYPE_Traitement, MALADIE, DESCRIPTION, DATE_DEBUT, DATE_FIN, DUREE_ESTIMEE, POSOLOGIE, EFFETS_SECONDAIRES, ETAT, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                       
-                   
-                     
         try (Connection conn = BaseDonneeConnexion.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             
@@ -41,7 +35,6 @@ public class TraitementDao {
             stmt.executeUpdate();
             return true;
             
-            
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -61,33 +54,33 @@ public class TraitementDao {
                 }
 
                 stmt.setInt(1, currentUser.getId());
-                ResultSet rs = stmt.executeQuery() ;
+                ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                     Traitement traitement = new Traitement();
-                        traitement.setNOM_TRAITEMENT(rs.getString("NOM_TRAITEMENT"));
-                        traitement.setTYPE_TRAITEMENT(rs.getString("TYPE_Traitement"));
-                        traitement.setMALADIE(rs.getString("MALADIE"));
-                        traitement.setDESCRIPTION(rs.getString("DESCRIPTION"));
-                        traitement.setDATE_DEBUT(rs.getDate("DATE_DEBUT").toLocalDate());
-                        traitement.setDATE_FIN(rs.getDate("DATE_FIN").toLocalDate());
-                        traitement.setDUREE_ESTIMEE(rs.getString("DUREE_ESTIMEE"));
-                        traitement.setPOSOLOGIE(rs.getString("POSOLOGIE"));
-                        traitement.setEFFETS_SECONDAIRES(rs.getString("EFFETS_SECONDAIRES"));
-                        traitement.setETAT(rs.getString("ETAT"));
+                    Traitement traitement = new Traitement();
+                    traitement.setid(rs.getInt("id"));
+                    traitement.setNOM_TRAITEMENT(rs.getString("NOM_TRAITEMENT"));
+                    traitement.setTYPE_TRAITEMENT(rs.getString("TYPE_Traitement"));
+                    traitement.setMALADIE(rs.getString("MALADIE"));
+                    traitement.setDESCRIPTION(rs.getString("DESCRIPTION"));
+                    traitement.setDATE_DEBUT(rs.getDate("DATE_DEBUT").toLocalDate());
+                    traitement.setDATE_FIN(rs.getDate("DATE_FIN").toLocalDate());
+                    traitement.setDUREE_ESTIMEE(rs.getString("DUREE_ESTIMEE"));
+                    traitement.setPOSOLOGIE(rs.getString("POSOLOGIE"));
+                    traitement.setEFFETS_SECONDAIRES(rs.getString("EFFETS_SECONDAIRES"));
+                    traitement.setETAT(rs.getString("ETAT"));
                     
                     liste.add(traitement);
                 }
 
         } catch (SQLException e) {
-           // System.err.println("Erreur lors de la récupération des traitements: " + e.getMessage());
             e.printStackTrace();
         }
         
         return liste;
     }
     
-    public static boolean supprimerTraitement(int id ) {
+    public static boolean supprimerTraitement(int id) {
         String sql = "DELETE FROM traitement WHERE id = ? AND user_id = ?";
         
         try (Connection conn = BaseDonneeConnexion.getConnection();
@@ -111,10 +104,10 @@ public class TraitementDao {
     }
     
     public boolean modifierTraitement(Traitement traitement) {
-        String sql = "UPDATE traitement SET NOM_TRAITEMENT = ?, TYPE_Traitement = ?,MALADIE = ?, DESCRIPTION = ?, DATE_DEBUT = ?, DATE_FIN = ?,DUREE_ESTIMEE = ?, POSOLOGIE = ?, EFFETS_SECONDAIRES = ?, ETAT = ? WHERE NOM_TRAITEMENT = ? AND user_id = ?";
-                     
-                     
-                    
+        String sql = "UPDATE traitement SET NOM_TRAITEMENT = ?, TYPE_Traitement = ?, MALADIE = ?, "
+                + "DESCRIPTION = ?, DATE_DEBUT = ?, DATE_FIN = ?, DUREE_ESTIMEE = ?, "
+                + "POSOLOGIE = ?, EFFETS_SECONDAIRES = ?, ETAT = ? "
+                + "WHERE  user_id = ?";
                      
         try (Connection conn = BaseDonneeConnexion.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -135,10 +128,10 @@ public class TraitementDao {
             stmt.setString(8, traitement.getPOSOLOGIE());
             stmt.setString(9, traitement.getEFFETS_SECONDAIRES());
             stmt.setString(10, traitement.getETAT());
-            stmt.setString(11, traitement.getNOM_TRAITEMENT()); // AJOUT DE CETTE LIGNE
+           
             stmt.setInt(11, currentUser.getId());
 
-           return stmt.executeUpdate()>0;
+            return stmt.executeUpdate() > 0;
             
         } catch (SQLException e) {
             e.printStackTrace();

@@ -151,14 +151,16 @@ public class PatientController implements Initializable {
     }
 
     private void loadPatientsFromDatabase() {
-        patientCardsContainer.getChildren().clear(); // Clear existing cards before loading new ones
-        List<Patient> patients = PatientDAO.getAllPatients(); // Fetch from DB
+        patientCardsContainer.getChildren().clear();
+        List<Patient> patients = PatientDAO.getAllPatients();
+        
         for (Patient patient : patients) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
                 Pane card = loader.load();
                 PatientCardIconController cardController = loader.getController();
                 cardController.setPatientInfo(patient, card);
+                cardController.setParentController(this); // Important: définir le parent controller
                 patientCardsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -182,6 +184,7 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    
     @FXML
     void handleCompte(ActionEvent event) {
         try {
@@ -193,6 +196,7 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    
     @FXML
     void handleTraitement(ActionEvent event) {
         try {
@@ -204,6 +208,7 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    
     @FXML
     void handleParametre(ActionEvent event) {
         try {
