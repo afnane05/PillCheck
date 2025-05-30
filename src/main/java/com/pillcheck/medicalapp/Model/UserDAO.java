@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class UserDAO{
     public static boolean deleteUser(int userId) {
         String deletePatients = "DELETE FROM patient WHERE user_id = ?";
-        //String deleteTreatments = "DELETE FROM traitement WHERE user_id = ?";
+        String deleteTreatments = "DELETE FROM traitement WHERE user_id = ?";
         String deleteUser = "DELETE FROM utilisateur WHERE id = ?";
 
         try (Connection conn = BaseDonneeConnexion.getConnection()) {
@@ -15,14 +15,14 @@ public class UserDAO{
 
             try (
                 PreparedStatement stmt1 = conn.prepareStatement(deletePatients);
-                //PreparedStatement stmt2 = conn.prepareStatement(deleteTreatments);
+                PreparedStatement stmt2 = conn.prepareStatement(deleteTreatments);
                 PreparedStatement stmt3 = conn.prepareStatement(deleteUser)
             ) {
                 stmt1.setInt(1, userId);
                 stmt1.executeUpdate();
 
-              //  stmt2.setInt(1, userId);
-              //  stmt2.executeUpdate();
+                stmt2.setInt(1, userId);
+                stmt2.executeUpdate();
 
                 stmt3.setInt(1, userId);
                 int rowsDeleted = stmt3.executeUpdate();
