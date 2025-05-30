@@ -17,10 +17,10 @@ import javafx.scene.Node;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+
 public class ParametreController implements Initializable {
-
-
-    @FXML
+    
+     @FXML
     private Button acceuilButton;
 
     @FXML
@@ -46,11 +46,13 @@ public class ParametreController implements Initializable {
 
     @FXML
     private Button mainButton;
+
+    
     @FXML
     private void handleAddTraitementButton() {
     // Code à exécuter lorsque le bouton "Ajouter traitement" est cliqué
     System.out.println("Ajout traitement cliqué");
-    }
+}
 
 
     @Override
@@ -115,7 +117,7 @@ public class ParametreController implements Initializable {
         // Action pour le bouton principal
         System.out.println("Bouton principal cliqué");
     }
-    @FXML
+     @FXML
     void handleAcceuil(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
@@ -172,3 +174,6 @@ public class ParametreController implements Initializable {
     }
 }
 
+    
+
+   

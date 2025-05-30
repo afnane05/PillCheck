@@ -5,32 +5,47 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Parametre.HelpViewController">
+   
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
+   
    <children>
-      <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeHelp" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FF9999, #99CCFF); -fx-wrap-text-fill: white; -fx-font-weight: : bold; -fx-background-radius: 50;" text="Exit">
+      <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeHelp" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FF9999, #99CCFF); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 50;" text="Exit">
          <VBox.margin>
             <Insets left="500.0" />
          </VBox.margin>
       </Button>
-      <Label alignment="CENTER" prefHeight="63.0" prefWidth="185.0" style="-fx-background-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 0 0 20 0;" text="AIDE-Pillcheck" textAlignment="CENTER">
+      
+      <Label alignment="CENTER" prefHeight="63.0" prefWidth="185.0" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 0 0 20 0;" text="AIDE-Pillcheck" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane prefHeight="350.0" prefWidth="560.0">
+      
+      <ScrollPane fx:id="scrollPane" prefHeight="361.0" prefWidth="560.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="333.0" prefWidth="557.0">
+          <VBox fx:id="faqContainer" spacing="10">
                <children>
-                  <TextArea fx:id="helpTextArea" editable="false" prefHeight="336.0" prefWidth="560.0" wrapText="true" />
+                  <TextArea fx:id="helpTextArea" editable="false" prefHeight="200.0" prefWidth="560.0" style="-fx-font-size: 12; -fx-background-color: #f8f9fa; -fx-border-color: #007bff; -fx-border-width: 2; -fx-border-radius: 5; -fx-cursor: hand;" wrapText="true" />
+                  
+                  <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #495057;" text="Cliquez sur une question pour obtenir la réponse :">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  
+                  <Button fx:id="patientQuestionButton" mnemonicParsing="false" onAction="#handlePatientQuestion" prefHeight="35.0" prefWidth="547.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FF9999, #99CCFF); -fx-text-fill: white; -fx-font-size: 14; -fx-background-radius: 5; -fx-cursor: hand; -fx-background-radius: 50;" text="Comment ajouter un patient ?" />
+                  
+                  <Button fx:id="traitementQuestionButton" mnemonicParsing="false" onAction="#handleTraitementQuestion" prefHeight="35.0" prefWidth="547.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FF9999, #99CCFF); -fx-text-fill: white; -fx-font-size: 14; -fx-background-radius: 5; -fx-cursor: hand; -fx-background-radius: 50;" text="Comment ajouter un traitement ?" />
+                  
+                  <Button fx:id="rdvQuestionButton" mnemonicParsing="false" onAction="#handleRdvQuestion" prefHeight="35.0" prefWidth="547.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FF9999, #99CCFF); -fx-text-fill: white; -fx-font-size: 14; -fx-background-radius: 5; -fx-cursor: hand; -fx-background-radius: 50;" text="Comment ajouter un rendez-vous ?" />
                </children>
-            </AnchorPane>
+          </VBox>
         </content>
       </ScrollPane>
    </children>
