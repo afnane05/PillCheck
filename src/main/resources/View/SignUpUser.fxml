@@ -32,7 +32,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="createAccountButton" layoutX="214.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #c0cadd; -fx-background-radius: 50;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="créer un Compte">
+            <Button fx:id="createAccountButton" layoutX="325.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #c0cadd; -fx-background-radius: 50;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="créer un Compte">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -61,6 +61,11 @@
                      </font></TextField>
                </children>
             </Pane>
+            <Button fx:id="annulerButton" layoutX="94.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleAnnuler" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #c0cadd; -fx-background-radius: 50;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Annuler">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Label layoutX="563.0" layoutY="69.0" prefHeight="49.0" prefWidth="260.0" text="Bienvenu à PillCheck !">

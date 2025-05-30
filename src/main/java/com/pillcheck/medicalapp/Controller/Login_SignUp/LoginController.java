@@ -1,8 +1,8 @@
 package com.pillcheck.medicalapp.Controller.Login_SignUp;
 
 import com.pillcheck.medicalapp.Controller.HomePage.HomePageController;
-
 import com.pillcheck.medicalapp.Model.LoginDAO;
+import com.pillcheck.medicalapp.Model.Session;
 import com.pillcheck.medicalapp.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,9 +25,6 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
-    private Label errorLabel;
-
-    @FXML
     private Button createAccountButton;
 
     @FXML
@@ -37,6 +34,8 @@ public class LoginController {
 
         User user = LoginDAO.getUserByEmailAndPassword(email, password);
         if (user != null) {
+            Session.getInstance().setCurrentUser(user);
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HomePage.fxml"));
                 Parent root = loader.load();
@@ -51,7 +50,14 @@ public class LoginController {
                 e.printStackTrace();
             }
         } else {
-            errorLabel.setText("Email ou mot de passe invalide !");
+            
+            System.out.println("Email ou mot de passe invalide !");
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de connexion");
+            alert.setHeaderText(null);
+            alert.setContentText("Email ou mot de passe invalide !");
+            alert.showAndWait();
         }
     }
 

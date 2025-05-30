@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="744.0" prefWidth="1320.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Patient.PatientController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="744.0" prefWidth="1368.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Traitement.TraitementController">
    <children>
       <VBox layoutX="38.0" layoutY="122.0" prefHeight="603.0" prefWidth="118.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;">
          <children>
-            <Button fx:id="acceuilButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleAcceuil" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Acceuil" wrapText="true">
+            <Button fx:id="acceuilButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleAcceuil" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="acceuil">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -34,10 +34,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="35.0" top="5.0" />
+                  <Insets left="35.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesPatientButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes patients" wrapText="true">
+            <Button fx:id="mesPatientButton" alignment="CENTER" mnemonicParsing="false" onAction="#handlePatients" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes patients">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -50,10 +50,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" top="5.0" />
+                  <Insets left="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesTraitementButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleTraitement" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes ttraitements">
+            <Button fx:id="mesTraitementButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Mes ttraitements">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -66,10 +66,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="9.0" top="5.0" />
+                  <Insets left="9.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous" wrapText="true">
+            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -82,10 +82,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="17.0" top="5.0" />
+                  <Insets left="17.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique" wrapText="true">
+            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -98,10 +98,10 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="23.0" top="5.0" />
+                  <Insets left="23.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCompte" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte" wrapText="true">
+            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCompte" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -114,7 +114,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="33.0" top="5.0" />
+                  <Insets left="33.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleParametre" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Paramètre">
@@ -130,20 +130,24 @@
                   <Font name="System Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets left="23.0" top="5.0" />
+                  <Insets left="23.0" />
                </VBox.margin>
             </Label>
          </children>
       </VBox>
       <ScrollPane layoutX="194.0" layoutY="118.0" prefHeight="619.0" prefWidth="1113.0">
          <content>
-            <FlowPane fx:id="patientCardsContainer" hgap="15.0" prefHeight="627.0" prefWidth="1118.0" style="-fx-background-color: #e8e1e1;" vgap="15.0">
+            <FlowPane fx:id="traitementCardsContainer" hgap="15.0" prefHeight="615.0" prefWidth="1118.0" style="-fx-background-color: #e8e1e1;" vgap="15.0">
                <padding>
                   <Insets left="15.0" top="15.0" />
-               </padding></FlowPane>
+               </padding>
+               <children>
+                  <VBox prefHeight="303.0" prefWidth="70.0" />
+               </children>
+            </FlowPane>
          </content>
       </ScrollPane>
-      <ImageView fitHeight="64.0" fitWidth="209.0" layoutX="29.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="209.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../logo.png" />
          </image>
@@ -165,7 +169,7 @@
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="addPatientButton" layoutX="1142.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="79.0" prefWidth="73.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
-      <Button fx:id="refreshButton" layoutX="1242.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #e8e1e1;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
+      <Button fx:id="addTraitementButton" layoutX="1188.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddTraitementButton" prefHeight="79.0" prefWidth="73.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
+      <Button fx:id="refreshButton" layoutX="1277.0" layoutY="67.0" minWidth="32.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="31.0" prefWidth="23.0" style="-fx-background-color: #e8e1e1;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Button" />
    </children>
 </Pane>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="cardTraitContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="299.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Traitement.TraitementCardIconController">
+   <children>
+      <Pane layoutX="1.0" layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="0.0" style="-fx-background-color: #e8e1e1;">
+         <children>
+            <Pane layoutX="26.0" layoutY="24.0" prefHeight="271.0" prefWidth="354.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+               <children>
+                  <Label layoutX="68.0" layoutY="4.0" prefHeight="40.0" prefWidth="101.0" text="NOM :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="105.0" layoutY="52.0" prefHeight="0.0" prefWidth="232.0" />
+                  <Label layoutX="55.0" layoutY="65.0" prefHeight="30.0" prefWidth="68.0" text="TYPE :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="112.0" layoutY="104.0" prefHeight="0.0" prefWidth="232.0" />
+                  <Label layoutX="56.0" layoutY="115.0" prefHeight="26.0" prefWidth="129.0" text="POSOLOGIE :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="115.0" layoutY="152.0" prefHeight="3.0" prefWidth="226.0" />
+                  <Label layoutX="56.0" layoutY="167.0" text="MALADIE :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="122.0" layoutY="202.0" prefHeight="3.0" prefWidth="214.0" />
+                  <Label layoutX="58.0" layoutY="217.0" text="DUREE :">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="17.0" layoutY="69.0" prefHeight="30.0" prefWidth="31.0">
+                     <children>
+                        <ImageView fitHeight="26.0" fitWidth="29.0">
+                           <image>
+                              <Image url="@../medicaments.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="18.0" layoutY="117.0">
+                     <image>
+                        <Image url="@../lhorloge.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="34.0" fitWidth="42.0" layoutX="14.0" layoutY="163.0">
+                     <image>
+                        <Image url="@../maladie.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="21.0" layoutY="217.0">
+                     <image>
+                        <Image url="@../calendar.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="TypeTraitementField" layoutX="129.0" layoutY="68.0" prefHeight="25.0" prefWidth="157.0" />
+                  <TextField fx:id="PosologieField" layoutX="181.0" layoutY="118.0" prefHeight="25.0" prefWidth="148.0" />
+                  <TextField fx:id="MaladieField" layoutX="165.0" layoutY="171.0" prefHeight="25.0" prefWidth="167.0" />
+                  <TextField fx:id="DureeEstimeeField" layoutX="143.0" layoutY="220.0" prefHeight="25.0" prefWidth="200.0" />
+                  <TextField fx:id="NomTraitementLabel" layoutX="134.0" layoutY="15.0" prefHeight="25.0" prefWidth="157.0" />
+                  <MenuButton layoutX="293.0" layoutY="8.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="41.0" style="-fx-background-color: #ffffff;">
+                    <items>
+                      <MenuItem fx:id="modifyTraitement" mnemonicParsing="false" onAction="#handleModify" text="modifier" />
+                      <MenuItem fx:id="DeleteTraitement" mnemonicParsing="false" onAction="#handleDelete" text="supprimer" />
+                    </items>
+                  </MenuButton>
+               </children>
+               <opaqueInsets>
+                  <Insets top="50.0" />
+               </opaqueInsets>
+            </Pane>
+            <VBox layoutX="-561.0" layoutY="-20.0" prefHeight="92.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="53.0" fitWidth="67.0">
+                     <image>
+                        <Image url="@../trait.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="20.0" top="25.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="8.0" prefHeight="63.0" prefWidth="60.0" style="-fx-background-radius: 100;" styleClass="canvas-gradient" stylesheets="@../LoginGradient.css">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="61.0" layoutX="4.0" layoutY="4.0">
+               <image>
+                  <Image url="@../trait-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</Pane>

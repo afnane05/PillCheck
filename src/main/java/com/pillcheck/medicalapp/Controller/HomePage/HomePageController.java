@@ -1,5 +1,8 @@
 package com.pillcheck.medicalapp.Controller.HomePage;
 
+import com.pillcheck.medicalapp.Model.Session;
+import com.pillcheck.medicalapp.Model.User;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,14 +18,9 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.scene.control.ContentDisplay;
 
-
-public class HomePageController implements Initializable{
-
+public class HomePageController implements javafx.fxml.Initializable {
 
     @FXML
     private Button mesPatientsButton;
@@ -41,53 +39,101 @@ public class HomePageController implements Initializable{
 
     @FXML
     private Button parametreButton;
-    
+
     @FXML
     private TextField nameField;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        // 🟢 Retrieve user from session
+        User currentUser = Session.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            nameField.setText(currentUser.getNom());
+        } else {
+            nameField.setText("Utilisateur inconnu");
+            System.out.println("⚠️ Aucun utilisateur en session !");
+        }
 
         // Icons
-
         FontIcon icon3 = new FontIcon(FontAwesomeSolid.HOSPITAL_USER);
         icon3.setIconSize(40);
+
         mesPatientsButton.setGraphic(icon3);
-        mesPatientsButton.setText("");
+        mesPatientsButton.setText("Mes Patients");
+        mesPatientsButton.setContentDisplay(ContentDisplay.TOP);
+       
+
 
         FontIcon icon4 = new FontIcon(FontAwesomeSolid.STETHOSCOPE);
         icon4.setIconSize(40);
         mesTraitementsButton.setGraphic(icon4);
-        mesTraitementsButton.setText("");
+        mesTraitementsButton.setText("Mes Traitements");
+        mesTraitementsButton.setContentDisplay(ContentDisplay.TOP);
 
+        
         FontIcon icon5 = new FontIcon(FontAwesomeSolid.CALENDAR_CHECK);
         icon5.setIconSize(40);
         mesRdvButton.setGraphic(icon5);
-        mesRdvButton.setText("");
+        mesRdvButton.setText("Mes Rendez-vous");
+        mesRdvButton.setContentDisplay(ContentDisplay.TOP);
 
         FontIcon icon6 = new FontIcon(FontAwesomeSolid.CHART_BAR);
         icon6.setIconSize(40);
         statistiqueButton.setGraphic(icon6);
-        statistiqueButton.setText("");
+        statistiqueButton.setText("Statistique");
+        statistiqueButton.setContentDisplay(ContentDisplay.TOP);
 
         FontIcon icon7 = new FontIcon(FontAwesomeSolid.USER_CIRCLE);
         icon7.setIconSize(40);
         compteButton.setGraphic(icon7);
-        compteButton.setText("");
+        compteButton.setText("Compte");
+        compteButton.setContentDisplay(ContentDisplay.TOP);
 
         FontIcon icon8 = new FontIcon(FontAwesomeSolid.COG);
         icon8.setIconSize(40);
         parametreButton.setGraphic(icon8);
-        parametreButton.setText("");
-
-
+        parametreButton.setText("Paramètres");
+        parametreButton.setContentDisplay(ContentDisplay.TOP);
     }
-    
+
     @FXML
     void handleMesPatients(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/PatientView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleMesTraitements(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/TraitView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleCompte(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/CompteView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleParametre(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/parametreView.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -97,6 +143,5 @@ public class HomePageController implements Initializable{
     }
     public void setUserName(String userName) {
         nameField.setText(userName);
-}
-    
+    }
 }

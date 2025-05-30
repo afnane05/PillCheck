@@ -1,6 +1,7 @@
 package com.pillcheck.medicalapp.Controller.Login_SignUp;
 
 import com.pillcheck.medicalapp.Controller.HomePage.HomePageController;
+import com.pillcheck.medicalapp.Model.Session;
 import com.pillcheck.medicalapp.Model.User;
 import com.pillcheck.medicalapp.Model.SignUpDAO;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -36,9 +38,9 @@ public class SignUpController {
         SignUpDAO dao = new SignUpDAO();
 
         // Attempt to insert user into the database
-        boolean success = dao.addUser(newUser);
+       User success = dao.addUser(newUser);
 
-        if (success) {
+        if (success!= null) {
             System.out.println("User registered successfully!");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HomePage.fxml"));
             Parent root = loader.load();
@@ -50,9 +52,32 @@ public class SignUpController {
             stage.show();
         } else {
             System.out.println("Registration failed.");
-            // TODO: Show an error alert here
+            
         }
     }
+    @FXML
+    void handleAnnuler(ActionEvent event) {
+        try {
+   
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/LoginUser.fxml"));
+
+        
+            Pane root = new Pane(); 
+            loader.setRoot(root);
+
+            loader.load();
+
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Error loading the Login Page: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
 

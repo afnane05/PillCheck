@@ -1,9 +1,7 @@
-package com.pillcheck.medicalapp.Controller.Patient;
+package com.pillcheck.medicalapp.Controller.Traitement;
 
-import com.pillcheck.medicalapp.Controller.Patient.PatientCardIconController;
-import com.pillcheck.medicalapp.Controller.Patient.AddPatientFormController;
-import com.pillcheck.medicalapp.Model.PatientModels.Patient;
-import com.pillcheck.medicalapp.Model.PatientModels.PatientDAO;
+import com.pillcheck.medicalapp.Model.TraitementModels.Traitement;
+import com.pillcheck.medicalapp.Model.TraitementModels.TraitementDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,17 +21,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
-public class PatientController implements Initializable {
+public class TraitementController implements Initializable {
 
     @FXML
-    private FlowPane patientCardsContainer;
+    private FlowPane traitementCardsContainer;
 
     @FXML
     private TextField searchBar;
 
     @FXML
-    private Button addPatientButton;
+    private Button addTraitementButton;
 
     @FXML
     private Button acceuilButton;
@@ -56,22 +54,22 @@ public class PatientController implements Initializable {
 
     @FXML
     private Button parametreButton;
-
+    
     @FXML
     private Button refreshButton;
 
     @FXML
-    public void handleAddPatientButton() {
+    public void handleAddTraitementButton() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddPatientForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddTraitementForm.fxml"));
             Scene scene = new Scene(loader.load());
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Ajouter un Patient");
+            stage.setTitle("Ajouter un Traitement");
             stage.setScene(scene);
 
-            AddPatientFormController controller = loader.getController();
+            AddTraitementFormController controller = loader.getController();
             controller.setParentController(this);
 
             stage.show();
@@ -80,34 +78,35 @@ public class PatientController implements Initializable {
         }
     }
 
-    public void ajouterCartePatient(Patient patient) {
+    public void ajouterCarteTraitement(Traitement traitement) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/TraitementCardIcon.fxml"));
             Node card = loader.load();
 
-            PatientCardIconController controller = loader.getController();
-            controller.setPatientInfo(patient, card);
+            TraitementCardIconController controller = loader.getController();
+            controller.setTraitementInfo(traitement,card);
             controller.setParentController(this);
 
-            patientCardsContainer.getChildren().add(0, card);
+            traitementCardsContainer.getChildren().add(0, card);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public FlowPane getPatientCardsContainer() {
-        return patientCardsContainer;
+    public FlowPane getTraitementCardsContainer()
+    {
+        return traitementCardsContainer;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadPatientsFromDatabase();
+        loadTraitementsFromDatabase();
 
+      
         // Icons
-        FontIcon icon1 = new FontIcon(FontAwesomeSolid.USER_PLUS);
+        FontIcon icon1 = new FontIcon(FontAwesomeSolid.PILLS);
         icon1.setIconSize(20);
-        addPatientButton.setGraphic(icon1);
-        addPatientButton.setText("");
+        addTraitementButton.setGraphic(icon1);
+        addTraitementButton.setText("");
 
         FontIcon icon2 = new FontIcon(FontAwesomeSolid.HOME);
         icon2.setIconSize(20);
@@ -146,31 +145,33 @@ public class PatientController implements Initializable {
 
         FontIcon icon9 = new FontIcon(FontAwesomeSolid.SYNC_ALT);
         icon9.setIconSize(20);
+        
         refreshButton.setGraphic(icon9);
         refreshButton.setText("");
+        
     }
 
-    private void loadPatientsFromDatabase() {
-        patientCardsContainer.getChildren().clear(); // Clear existing cards before loading new ones
-        List<Patient> patients = PatientDAO.getAllPatients(); // Fetch from DB
-        for (Patient patient : patients) {
+    private void loadTraitementsFromDatabase(){
+        traitementCardsContainer.getChildren().clear();//clear existing cards before loading the news ones
+        List<Traitement> liste = TraitementDao.getAllTraitements(); // méthode fictive
+        for (Traitement traitement : liste) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/TraitementCardIcon.fxml"));
                 Pane card = loader.load();
-                PatientCardIconController cardController = loader.getController();
-                cardController.setPatientInfo(patient, card);
-                patientCardsContainer.getChildren().add(card);
+                TraitementCardIconController cardController = loader.getController();
+                cardController.setTraitementInfo(traitement,card);
+                traitementCardsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-    @FXML
-    public void handleRefresh() {
-        loadPatientsFromDatabase();
+     @FXML
+    public void handleRefresh(){
+     
+        loadTraitementsFromDatabase();
+        
     }
-    
     @FXML
     void handleAcceuil(ActionEvent event) {
         try {
@@ -194,9 +195,9 @@ public class PatientController implements Initializable {
         }
     }
     @FXML
-    void handleTraitement(ActionEvent event) {
+    void handlePatients(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/TraitView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/View/PatientView.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -216,3 +217,5 @@ public class PatientController implements Initializable {
         }
     }
 }
+
+ 

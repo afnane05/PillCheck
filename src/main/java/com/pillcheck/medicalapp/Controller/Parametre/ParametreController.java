@@ -1,40 +1,24 @@
-package com.pillcheck.medicalapp.Controller.Patient;
+package com.pillcheck.medicalapp.Controller.Parametre;
 
-import com.pillcheck.medicalapp.Controller.Patient.PatientCardIconController;
-import com.pillcheck.medicalapp.Controller.Patient.AddPatientFormController;
-import com.pillcheck.medicalapp.Model.PatientModels.Patient;
-import com.pillcheck.medicalapp.Model.PatientModels.PatientDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.scene.Parent;
+import javafx.scene.Node;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 
-public class PatientController implements Initializable {
+public class ParametreController implements Initializable {
 
-    @FXML
-    private FlowPane patientCardsContainer;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private Button addPatientButton;
 
     @FXML
     private Button acceuilButton;
@@ -58,57 +42,19 @@ public class PatientController implements Initializable {
     private Button parametreButton;
 
     @FXML
-    private Button refreshButton;
+    private Button helpButton;
 
     @FXML
-    public void handleAddPatientButton() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AddPatientForm.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Ajouter un Patient");
-            stage.setScene(scene);
-
-            AddPatientFormController controller = loader.getController();
-            controller.setParentController(this);
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private Button mainButton;
+    @FXML
+    private void handleAddTraitementButton() {
+    // Code à exécuter lorsque le bouton "Ajouter traitement" est cliqué
+    System.out.println("Ajout traitement cliqué");
     }
 
-    public void ajouterCartePatient(Patient patient) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
-            Node card = loader.load();
-
-            PatientCardIconController controller = loader.getController();
-            controller.setPatientInfo(patient, card);
-            controller.setParentController(this);
-
-            patientCardsContainer.getChildren().add(0, card);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public FlowPane getPatientCardsContainer() {
-        return patientCardsContainer;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadPatientsFromDatabase();
-
-        // Icons
-        FontIcon icon1 = new FontIcon(FontAwesomeSolid.USER_PLUS);
-        icon1.setIconSize(20);
-        addPatientButton.setGraphic(icon1);
-        addPatientButton.setText("");
-
         FontIcon icon2 = new FontIcon(FontAwesomeSolid.HOME);
         icon2.setIconSize(20);
         acceuilButton.setGraphic(icon2);
@@ -143,34 +89,32 @@ public class PatientController implements Initializable {
         icon8.setIconSize(20);
         parametreButton.setGraphic(icon8);
         parametreButton.setText("");
-
-        FontIcon icon9 = new FontIcon(FontAwesomeSolid.SYNC_ALT);
-        icon9.setIconSize(20);
-        refreshButton.setGraphic(icon9);
-        refreshButton.setText("");
     }
 
-    private void loadPatientsFromDatabase() {
-        patientCardsContainer.getChildren().clear(); // Clear existing cards before loading new ones
-        List<Patient> patients = PatientDAO.getAllPatients(); // Fetch from DB
-        for (Patient patient : patients) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
-                Pane card = loader.load();
-                PatientCardIconController cardController = loader.getController();
-                cardController.setPatientInfo(patient, card);
-                patientCardsContainer.getChildren().add(card);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    @FXML
+    private void openHelp() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HelpView.fxml"));
+           // FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HelpView.fxml"));
+            Parent root = loader.load();
+            
+            Stage helpStage = new Stage();
+            helpStage.setTitle("Aide - PillCheck");
+            helpStage.setScene(new Scene(root, 600, 500));
+            helpStage.initModality(Modality.APPLICATION_MODAL);
+            helpStage.setResizable(false);
+            helpStage.show();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
-    public void handleRefresh() {
-        loadPatientsFromDatabase();
+    private void handleMainButton() {
+        // Action pour le bouton principal
+        System.out.println("Bouton principal cliqué");
     }
-    
     @FXML
     void handleAcceuil(ActionEvent event) {
         try {
@@ -215,4 +159,16 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void handlePatient(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/PatientView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+

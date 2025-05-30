@@ -20,10 +20,10 @@ public class LoginDAO {
 
             if (rs.next()) {
                 User user = new User();
+                user.setId(rs.getInt("id")); 
                 user.setNom(rs.getString("nom"));
                 user.setEmail(rs.getString("email"));
                 user.setMotDePasse(rs.getString("motDePasse"));
-                // Add other fields if needed (e.g., ID, role, etc.)
                 return user;
             }
 
@@ -34,4 +34,3 @@ public class LoginDAO {
         return null; // return null if user not found
     }
 }
-    

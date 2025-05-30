@@ -11,6 +11,7 @@ public class Patient {
     private String etat;
     private String sexe;
     private String nomTraitement;
+    private int id ; 
 
     public Patient(String cin, String nom, String prenom, LocalDate dateNaiss, String telephone, String etat, String sexe, String nomTraitement) {
         this.cin = cin;
@@ -35,6 +36,7 @@ public class Patient {
     public String getEtat() { return etat; }
     public String getSexe() { return sexe; }
     public String getNomTraitement() { return nomTraitement; }
+    public int getId() { return id; }
         // Setters
     public void setCin(String cin) {
         this.cin = cin;
@@ -64,8 +66,11 @@ public class Patient {
         this.sexe = sexe;
     }
 
-    public void setNomTraitement(String nomTraitement) {
-        this.nomTraitement = nomTraitement;
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public void setNomTraitement(String nomTraitement) {
+        this.nomTraitement = nomTraitement;    }
 }
+

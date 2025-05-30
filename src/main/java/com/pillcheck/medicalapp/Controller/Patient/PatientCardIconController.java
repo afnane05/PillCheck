@@ -94,7 +94,7 @@ public class PatientCardIconController {
         
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            boolean success = PatientDAO.supprimerPatient(patient.getCin());
+            boolean success = PatientDAO.supprimerPatient(patient.getId());
             
         }
 }
@@ -107,9 +107,9 @@ public class PatientCardIconController {
             Scene scene = new Scene(loader.load());
 
             AddPatientFormController controller = loader.getController();
-            controller.prefillForm(patient); // You'll implement this method
+            controller.prefillForm(patient); 
             
-            controller.setParentController(parentController); // To refresh cards
+            controller.setParentController(parentController); 
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -122,8 +122,5 @@ public class PatientCardIconController {
         }
     }
 
-
-
-    
 
 }

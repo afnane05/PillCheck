@@ -70,10 +70,8 @@ public class AddPatientFormController {
         boolean success;
 
         if (this.patient != null) {
-            // ===> C’est une modification
             success = patientDAO.modifierPatient(updatedPatient);
         } else {
-            // ===> C’est un ajout
             success = patientDAO.ajouterPatient(updatedPatient);
         }
 

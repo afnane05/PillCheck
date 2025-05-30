@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Compte.modifyAccountController">
+   <children>
+      <ImageView fitHeight="70.0" fitWidth="77.0" layoutX="197.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../user.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="24.0" layoutY="93.0" prefHeight="41.0" prefWidth="78.0" text="Nom : ">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="163.0" prefHeight="41.0" prefWidth="78.0" text="email :">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="241.0" prefHeight="41.0" prefWidth="170.0" text="Mot de passe :">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="182.0" layoutY="306.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="109.0" style="-fx-background-radius: 50; -fx-background-color: #e8e1e1;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Modifier" />
+      <TextField layoutX="123.0" layoutY="99.0" prefHeight="32.0" prefWidth="270.0" />
+      <TextField layoutX="191.0" layoutY="246.0" prefHeight="32.0" prefWidth="251.0" />
+      <TextField layoutX="132.0" layoutY="169.0" prefHeight="32.0" prefWidth="270.0" />
+   </children>
+</Pane>
