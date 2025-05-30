@@ -32,6 +32,11 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        if (!isValidEmail(email)) {
+            showAlert("Format email invalide", "L'email doit contenir '@' et '.'");
+            return;
+        }
+
         User user = LoginDAO.getUserByEmailAndPassword(email, password);
         if (user != null) {
             Session.getInstance().setCurrentUser(user);
@@ -50,14 +55,7 @@ public class LoginController {
                 e.printStackTrace();
             }
         } else {
-            
-            System.out.println("Email ou mot de passe invalide !");
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de connexion");
-            alert.setHeaderText(null);
-            alert.setContentText("Email ou mot de passe invalide !");
-            alert.showAndWait();
+            showAlert("Erreur de connexion", "Email ou mot de passe invalide !");
         }
     }
 
@@ -71,5 +69,17 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        return email != null && email.contains("@") && email.contains(".")  ;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

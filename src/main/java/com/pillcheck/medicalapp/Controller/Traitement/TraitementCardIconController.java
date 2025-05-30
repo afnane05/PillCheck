@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -46,17 +47,23 @@ public class TraitementCardIconController {
     private TraitementController parentController;
     private Node rootNode;  // Add this field
 
-    public void setTraitementInfo(Traitement traitement,Node rootNode) {
-        this.traitement = traitement;
-        this.rootNode = rootNode;
-        
-        NomTraitementLabel.setText(traitement.getNOM_TRAITEMENT());
-        TypeTraitementField.setText(traitement.getTYPE_TRAITEMENT());
-        PosologieField.setText(traitement.getPOSOLOGIE());
-        MaladieField.setText(traitement.getMALADIE());
+   public void setTraitementInfo(Traitement traitement, Node rootNode) {
+    this.traitement = traitement;
+    this.rootNode = rootNode;
+    
+    NomTraitementLabel.setText(traitement.getNOM_TRAITEMENT());
+    TypeTraitementField.setText(traitement.getTYPE_TRAITEMENT());
+    PosologieField.setText(traitement.getPOSOLOGIE());
+    MaladieField.setText(traitement.getMALADIE());
+    
+    // Calcul de la durée pour l'affichage dans la carte
+    if (traitement.getDATE_DEBUT() != null && traitement.getDATE_FIN() != null) {
+        long jours = ChronoUnit.DAYS.between(traitement.getDATE_DEBUT(), traitement.getDATE_FIN()) + 1;
+        DureeEstimeeField.setText(jours + " jour(s)");
+    } else {
         DureeEstimeeField.setText(traitement.getDUREE_ESTIMEE());
-        
     }
+}
     
 
 

@@ -4,12 +4,18 @@ import com.pillcheck.medicalapp.Model.Session;
 import com.pillcheck.medicalapp.Model.User;
 import com.pillcheck.medicalapp.Model.BaseDonneeConnexion;
 import java.sql.*;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TraitementDao {
     
     public boolean ajouterTraitement(Traitement traitement) {
+         // Calculer la durée avant l'insertion
+        if (traitement.getDATE_DEBUT() != null && traitement.getDATE_FIN() != null) {
+        long jours = ChronoUnit.DAYS.between(traitement.getDATE_DEBUT(), traitement.getDATE_FIN()) + 1;
+        traitement.setDUREE_ESTIMEE(jours + " jour(s)");
+    }
         String sql = "INSERT INTO traitement (NOM_TRAITEMENT, TYPE_Traitement, MALADIE, DESCRIPTION, DATE_DEBUT, DATE_FIN, DUREE_ESTIMEE, POSOLOGIE, EFFETS_SECONDAIRES, ETAT, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                       
         try (Connection conn = BaseDonneeConnexion.getConnection();
@@ -104,6 +110,11 @@ public class TraitementDao {
     }
     
     public boolean modifierTraitement(Traitement traitement) {
+         // Calculer la durée avant la mise à jour
+        if (traitement.getDATE_DEBUT() != null && traitement.getDATE_FIN() != null) {
+        long jours = ChronoUnit.DAYS.between(traitement.getDATE_DEBUT(), traitement.getDATE_FIN()) + 1;
+        traitement.setDUREE_ESTIMEE(jours + " jour(s)");
+    }
         String sql = "UPDATE traitement SET NOM_TRAITEMENT = ?, TYPE_Traitement = ?, MALADIE = ?, "
                 + "DESCRIPTION = ?, DATE_DEBUT = ?, DATE_FIN = ?, DUREE_ESTIMEE = ?, "
                 + "POSOLOGIE = ?, EFFETS_SECONDAIRES = ?, ETAT = ? "

@@ -38,58 +38,74 @@ public class AddPatientFormController {
         traitementChoiceBox.getItems().addAll("Renomicine", "Doliprane", "Spasfon");
     }
 
-    @FXML
-    private void handleAddPatient(ActionEvent event) {
-        // Récupération des champs
-        String cin = cinField.getText();
-        String nom = nomField.getText();
-        String prenom = prenomField.getText();
-        LocalDate dateNaissance = dateNaissancePicker.getValue();
-        String telephone = telephoneField.getText();
-        String etat = etatField.getText();
-        String traitement = traitementChoiceBox.getValue();
+  @FXML
+private void handleAddPatient(ActionEvent event) {
+    // Récupération des champs
+    String cin = cinField.getText();
+    String nom = nomField.getText();
+    String prenom = prenomField.getText();
+    LocalDate dateNaissance = dateNaissancePicker.getValue();
+    String telephone = telephoneField.getText();
+    String etat = etatField.getText();
+    String traitement = traitementChoiceBox.getValue();
 
-        String sexe = null;
-        if (sexeGroup.getSelectedToggle() != null) {
-            RadioButton selectedRadio = (RadioButton) sexeGroup.getSelectedToggle();
-            sexe = selectedRadio.getText();
-        }
-
-        // Validation
-        if (cin.isEmpty() || nom.isEmpty() || prenom.isEmpty() || dateNaissance == null ||
-            telephone.isEmpty() || etat.isEmpty() || sexe == null || traitement == null) {
-            showAlert("Champs manquants", "Veuillez remplir tous les champs.");
-            return;
-        }
-
-        PatientDAO patientDAO = new PatientDAO();
-        boolean success;
-
-        if (this.patient != null) {
-            // Mode modification - on met à jour le patient existant
-            this.patient.setCin(cin);
-            this.patient.setNom(nom);
-            this.patient.setPrenom(prenom);
-            this.patient.setDateNaissance(dateNaissance);
-            this.patient.setTelephone(telephone);
-            this.patient.setEtat(etat);
-            this.patient.setSexe(sexe);
-            this.patient.setNomTraitement(traitement);
-            
-            success = patientDAO.modifierPatient(this.patient);
-        } else {
-            // Mode ajout - on crée un nouveau patient
-            Patient nouveauPatient = new Patient(cin, nom, prenom, dateNaissance, telephone, etat, sexe, traitement);
-            success = patientDAO.ajouterPatient(nouveauPatient);
-        }
-
-        if (success) {
-            parentController.handleRefresh(); // recharge la liste
-            closeWindow(event);
-        } else {
-            showAlert("Erreur", "Une erreur est survenue lors de l'enregistrement du patient.");
-        }
+    String sexe = null;
+    if (sexeGroup.getSelectedToggle() != null) {
+        RadioButton selectedRadio = (RadioButton) sexeGroup.getSelectedToggle();
+        sexe = selectedRadio.getText();
     }
+
+    // Validation des champs obligatoires
+    if (cin.isEmpty() || nom.isEmpty() || prenom.isEmpty() || dateNaissance == null ||
+        telephone.isEmpty() || etat.isEmpty() || sexe == null || traitement == null) {
+        showAlert("Champs manquants", "Veuillez remplir tous les champs.");
+        return;
+    }
+
+    // Validation de la date de naissance
+    LocalDate aujourdHui = LocalDate.now();
+    LocalDate dateMin = aujourdHui.minusYears(120); // 120 ans maximum
+    LocalDate dateMax = aujourdHui.minusYears(1);   // Au moins 1 an
+
+    if (dateNaissance.isAfter(dateMax)) {
+        showAlert("Date invalide", "La date de naissance doit être dans le passé (au moins 1 an).");
+        return;
+    }
+
+    if (dateNaissance.isBefore(dateMin)) {
+        showAlert("Date invalide", "La date de naissance ne peut pas être avant " + dateMin.getYear());
+        return;
+    }
+
+    PatientDAO patientDAO = new PatientDAO();
+    boolean success;
+
+    if (this.patient != null) {
+        // Mode modification
+        this.patient.setCin(cin);
+        this.patient.setNom(nom);
+        this.patient.setPrenom(prenom);
+        this.patient.setDateNaissance(dateNaissance);
+        this.patient.setTelephone(telephone);
+        this.patient.setEtat(etat);
+        this.patient.setSexe(sexe);
+        this.patient.setNomTraitement(traitement);
+        
+        success = patientDAO.modifierPatient(this.patient);
+    } else {
+        // Mode ajout
+        Patient nouveauPatient = new Patient(cin, nom, prenom, dateNaissance, telephone, etat, sexe, traitement);
+        success = patientDAO.ajouterPatient(nouveauPatient);
+    }
+
+    if (success) {
+        parentController.handleRefresh();
+        closeWindow(event);
+    } else {
+        showAlert("Erreur", "Une erreur est survenue lors de l'enregistrement du patient.");
+    }
+}
+   
 
     private void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

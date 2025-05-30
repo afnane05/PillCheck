@@ -36,31 +36,43 @@ public class AddTraitementFormController {
     }
 
 
-    @FXML
-    private void initialize() {
-        // Configuration des dates par défaut
-        DateDebutPicker.setValue(LocalDate.now());
-        DateFinPicker.setValue(LocalDate.now().plusDays(7)); // Par défaut, une semaine de traitement
-        
-        // Calcul automatique de la durée estimée lorsque les dates changent
-        DateDebutPicker.valueProperty().addListener((obs, oldVal, newVal) -> updateDureeEstimee());
-        DateFinPicker.valueProperty().addListener((obs, oldVal, newVal) -> updateDureeEstimee());
-        EtatField.getItems().addAll("en cours","suspendue","terminé");
-        
-        // Configuration du bouton
-       // ajouterTraitementButton.setOnAction(this::handleAddTraitement);
-    }
-    
-    private void updateDureeEstimee() {
-        LocalDate dateDebut = DateDebutPicker.getValue();
-        LocalDate dateFin = DateFinPicker.getValue();
-        
-        if (dateDebut != null && dateFin != null) {
-            long jours = ChronoUnit.DAYS.between(dateDebut, dateFin);
-            DureeEstimeeField.setText(String.valueOf(jours) + " jours");
-        }
-    }
 
+    @FXML
+private void initialize() {
+    // Configuration des dates par défaut
+    DateDebutPicker.setValue(LocalDate.now());
+    DateFinPicker.setValue(LocalDate.now().plusDays(7));
+    
+    // Calcul automatique de la durée estimée
+    DateDebutPicker.valueProperty().addListener((obs, oldVal, newVal) -> {
+        updateDureeEstimee();
+        // Si la date de fin est avant la nouvelle date de début, ajustez-la
+        if (DateFinPicker.getValue() != null && newVal != null 
+            && newVal.isAfter(DateFinPicker.getValue())) {
+            DateFinPicker.setValue(newVal.plusDays(7));
+        }
+    });
+    
+    DateFinPicker.valueProperty().addListener((obs, oldVal, newVal) -> updateDureeEstimee());
+    
+    EtatField.getItems().addAll("en cours", "suspendue", "terminé");
+    EtatField.setValue("en cours"); // Valeur par défaut
+}
+
+private void updateDureeEstimee() {
+    LocalDate dateDebut = DateDebutPicker.getValue();
+    LocalDate dateFin = DateFinPicker.getValue();
+    
+    if (dateDebut != null && dateFin != null) {
+        if (dateDebut.isAfter(dateFin)) {
+            showAlert("Erreur de date", "La date de fin doit être postérieure à la date de début.");
+            return;
+        }
+        
+        long jours = ChronoUnit.DAYS.between(dateDebut, dateFin) + 1; // +1 pour inclure le premier jour
+        DureeEstimeeField.setText(jours + " jour(s)");
+    }
+}
     @FXML
     private void handleAddTraitement(ActionEvent event) {
         // Récupération des champs

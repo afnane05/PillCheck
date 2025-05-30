@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 
 public class SignUpController {
 
@@ -33,10 +34,13 @@ public class SignUpController {
         String email = emailField.getText();
         String motDePasse = passwordField.getText();
 
+        if (!isValidEmail(email)) {
+            showAlert("Format email invalide", "L'email doit contenir '@' et '.'");
+            return;
+        }
 
         User newUser = new User(nom, email, motDePasse);
         SignUpDAO dao = new SignUpDAO();
-
 
         User success = dao.addUser(newUser);
 
@@ -55,7 +59,7 @@ public class SignUpController {
             stage.setScene(scene);
             stage.show();
         } else {
-            System.out.println("Registration failed.");
+            showAlert("Erreur", "L'inscription a échoué.");
         }
     }
 
@@ -72,6 +76,18 @@ public class SignUpController {
         } catch (IOException e) {
             System.out.println("Error loading the Login Page: " + e.getMessage());
             e.printStackTrace();
- }
-}
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        return email != null && email.contains("@") && email.contains(".");
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
