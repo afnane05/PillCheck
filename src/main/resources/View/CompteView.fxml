@@ -66,7 +66,7 @@
                   <Insets left="9.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous" wrapText="true">
+            <Button fx:id="mesRdvButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleRdv" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Rendez-vous">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -82,7 +82,7 @@
                   <Insets left="17.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique" wrapText="true">
+            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleStatistics" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>

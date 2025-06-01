@@ -41,4 +41,21 @@ public class UserDAO{
 
         return false;
     }
+    public static boolean updateUser(User user) {
+        String sql = "UPDATE utilisateur SET nom = ?, email = ?, motDePasse = ? WHERE id = ?";
+        try (Connection conn = BaseDonneeConnexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getNom());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getMotDePasse());
+            stmt.setInt(4, user.getId());
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -2,22 +2,101 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="744.0" prefWidth="1368.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Parametre.ParametreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="744.0" prefWidth="1320.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Statistics.StatisticsController">
    <children>
-      <ImageView fitHeight="64.0" fitWidth="209.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+      <Label alignment="CENTER" layoutX="611.0" layoutY="61.0" prefHeight="53.0" prefWidth="364.0" text="Mes Statistiques :">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="88.0" fitWidth="120.0" layoutX="509.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../logo.png" />
+            <Image url="@../statistics.png" />
          </image>
       </ImageView>
-      <VBox layoutX="48.0" layoutY="114.0" prefHeight="621.0" prefWidth="118.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;">
+      <TabPane layoutX="344.0" layoutY="163.0" prefHeight="533.0" prefWidth="798.0" style="-fx-background-color: #f2e2ba;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab style="-fx-background-color: #e8e1e1;" text="Patients">
+               <content>
+                  <VBox prefHeight="522.0" prefWidth="740.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label fx:id="totalPatientsLabel" text="Total Patients">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="PatientsLabel" />
+                           </children>
+                        </HBox>
+                        <PieChart fx:id="patientsChart" prefHeight="396.0" prefWidth="498.0" title="Répartition par traitement" />
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+          <Tab style="-fx-background-color: #e8e1e1;" text="Traitements">
+            <content>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="totalTraitementsLabel" text="Total Traitements">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="TraitementsLabel" />
+                           </children>
+                        </HBox>
+                        <PieChart fx:id="traitementsChart" title="Répartition par état" />
+                     </children>
+                  </VBox>
+            </content>
+          </Tab>
+            <Tab style="-fx-background-color: #e8e1e1;" text="Rendez-Vous">
+               <content>
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="totalRdvLabel" text="Total Rendez-vous">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="RdvLabel" />
+                           </children>
+                        </HBox>
+                        <BarChart fx:id="rdvChart" title="Rendez-vous par statut">
+                          <xAxis>
+                            <CategoryAxis label="Statut" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Nombre" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children></VBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <VBox layoutX="48.0" layoutY="120.0" prefHeight="615.0" prefWidth="118.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;">
          <children>
             <Button fx:id="acceuilButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleAcceuil" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Acceuil" wrapText="true">
                <cursor>
@@ -86,7 +165,7 @@
                   <Insets left="17.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleStatistics" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique">
+            <Button fx:id="statistiqueButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Statistique">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -102,7 +181,7 @@
                   <Insets left="23.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCompte" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte" wrapText="true">
+            <Button fx:id="compteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCompte" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Compte">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -118,7 +197,7 @@
                   <Insets left="33.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#handleParametre" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Paramètre" wrapText="true">
+            <Button fx:id="parametreButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleParametre" prefHeight="50.0" prefWidth="78.0" style="-fx-background-radius: 100; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Paramètre">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -136,25 +215,10 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="helpButton" layoutX="437.0" layoutY="324.0" mnemonicParsing="false" onAction="#openHelp" prefHeight="101.0" prefWidth="237.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="help">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="exporterButton" layoutX="756.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleExporter" prefHeight="101.0" prefWidth="237.0" style="-fx-background-radius: 50; -fx-background-color: #c2d3e0;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="Exporter">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="122.0" fitWidth="150.0" layoutX="455.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="209.0" layoutX="39.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../parametre.png" />
+            <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="612.0" layoutY="102.0" prefHeight="53.0" prefWidth="302.0" text="Paramètres">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Label>
    </children>
-</Pane>
+</AnchorPane>

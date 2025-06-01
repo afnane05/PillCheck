@@ -1,3 +1,4 @@
+
 package com.pillcheck.medicalapp.Controller.Traitement;
 
 import com.pillcheck.medicalapp.Model.TraitementModels.Traitement;
@@ -19,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
@@ -32,31 +35,10 @@ public class TraitementController implements Initializable {
     private TextField searchBar;
 
     @FXML
-    private Button addTraitementButton;
+    private Button addTraitementButton, acceuilButton, mesPatientButton, mesTraitementButton,
+                  mesRdvButton, statistiqueButton, compteButton, parametreButton, refreshButton;
 
-    @FXML
-    private Button acceuilButton;
-
-    @FXML
-    private Button mesPatientButton;
-
-    @FXML
-    private Button mesTraitementButton;
-
-    @FXML
-    private Button mesRdvButton;
-
-    @FXML
-    private Button statistiqueButton;
-
-    @FXML
-    private Button compteButton;
-
-    @FXML
-    private Button parametreButton;
-    
-    @FXML
-    private Button refreshButton;
+    private List<Traitement> allTraitements;
 
     @FXML
     public void handleAddTraitementButton() {
@@ -84,7 +66,7 @@ public class TraitementController implements Initializable {
             Node card = loader.load();
 
             TraitementCardIconController controller = loader.getController();
-            controller.setTraitementInfo(traitement,card);
+            controller.setTraitementInfo(traitement, card);
             controller.setParentController(this);
 
             traitementCardsContainer.getChildren().add(0, card);
@@ -92,21 +74,26 @@ public class TraitementController implements Initializable {
             e.printStackTrace();
         }
     }
-    public FlowPane getTraitementCardsContainer()
-    {
+
+    public FlowPane getTraitementCardsContainer() {
         return traitementCardsContainer;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setupIcons();
         loadTraitementsFromDatabase();
 
-      
-        // Icons
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTraitements(newValue);
+        });
+    }
+
+    private void setupIcons() {
         FontIcon icon1 = new FontIcon(FontAwesomeSolid.PILLS);
         icon1.setIconSize(20);
         addTraitementButton.setGraphic(icon1);
-        addTraitementButton.setText("");
+        addTraitementButton.setText("+");
 
         FontIcon icon2 = new FontIcon(FontAwesomeSolid.HOME);
         icon2.setIconSize(20);
@@ -145,32 +132,52 @@ public class TraitementController implements Initializable {
 
         FontIcon icon9 = new FontIcon(FontAwesomeSolid.SYNC_ALT);
         icon9.setIconSize(20);
-        
         refreshButton.setGraphic(icon9);
         refreshButton.setText("");
-        
     }
 
-    private void loadTraitementsFromDatabase(){
-        traitementCardsContainer.getChildren().clear();//clear existing cards before loading the news ones
-        List<Traitement> liste = TraitementDao.getAllTraitements(); // méthode fictive
-        for (Traitement traitement : liste) {
+    private void loadTraitementsFromDatabase() {
+        traitementCardsContainer.getChildren().clear();
+        allTraitements = TraitementDao.getAllTraitements();
+
+        for (Traitement traitement : allTraitements) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/TraitementCardIcon.fxml"));
                 Pane card = loader.load();
                 TraitementCardIconController cardController = loader.getController();
-                cardController.setTraitementInfo(traitement,card);
+                cardController.setTraitementInfo(traitement, card);
                 traitementCardsContainer.getChildren().add(card);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-     @FXML
-    public void handleRefresh(){
-     
+    private void filterTraitements(String keyword) {
+        traitementCardsContainer.getChildren().clear();
+        String lowerKeyword = keyword.toLowerCase();
+
+        List<Traitement> filtered = allTraitements.stream()
+            .filter(t -> t.getNOM_TRAITEMENT().toLowerCase().contains(lowerKeyword))
+            .collect(Collectors.toList());
+
+        for (Traitement traitement : filtered) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/TraitementCardIcon.fxml"));
+                Pane card = loader.load();
+                TraitementCardIconController controller = loader.getController();
+                controller.setTraitementInfo(traitement, card);
+                traitementCardsContainer.getChildren().add(card);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    @FXML
+    public void handleRefresh() {
         loadTraitementsFromDatabase();
-        
+        searchBar.clear();
     }
     @FXML
     void handleAcceuil(ActionEvent event) {
@@ -216,6 +223,29 @@ public class TraitementController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void handleRdv(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/RdvView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleStatistics(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/StatisticsView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 
  

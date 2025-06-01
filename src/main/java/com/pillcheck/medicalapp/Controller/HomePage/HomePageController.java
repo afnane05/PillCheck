@@ -141,6 +141,28 @@ public class HomePageController implements javafx.fxml.Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void handleRdv(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/RdvView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleStatistics(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/StatisticsView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void setUserName(String userName) {
         nameField.setText(userName);
     }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="rdvDetailsPane" prefHeight="450.0" prefWidth="416.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Rdv.RdvDetailsController">
+   <cursor>
+      <Cursor fx:constant="S_RESIZE" />
+   </cursor>
+   <children>
+      <ImageView fx:id="profilIcon" fitHeight="75.0" fitWidth="79.0" layoutX="51.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Rdv.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="traitementLabel" alignment="CENTER" layoutX="31.0" layoutY="319.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;" text="Statut">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="statutField" alignment="CENTER" layoutX="168.0" layoutY="318.0" prefHeight="43.0" prefWidth="234.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="prenomLabel" alignment="CENTER" layoutX="31.0" layoutY="236.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;" text="Motif">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="motifField" alignment="CENTER" layoutX="168.0" layoutY="236.0" prefHeight="43.0" prefWidth="234.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="heureField" alignment="CENTER" layoutX="168.0" layoutY="150.0" prefHeight="43.0" prefWidth="234.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="nomLabel" alignment="CENTER" layoutX="31.0" layoutY="150.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #aaf683; -fx-background-radius: 50;" text="Horaire">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="dateField" alignment="CENTER" layoutX="157.0" layoutY="43.0" prefHeight="35.0" prefWidth="234.0" text=" ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

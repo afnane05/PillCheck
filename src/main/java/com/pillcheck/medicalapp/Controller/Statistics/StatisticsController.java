@@ -1,26 +1,45 @@
-package com.pillcheck.medicalapp.Controller.Parametre;
+package com.pillcheck.medicalapp.Controller.Statistics;
 
+import com.pillcheck.medicalapp.Model.PatientModels.Patient;
+import com.pillcheck.medicalapp.Model.PatientModels.PatientDAO;
+import com.pillcheck.medicalapp.Model.TraitementModels.Traitement;
+import com.pillcheck.medicalapp.Model.TraitementModels.TraitementDao;
+import com.pillcheck.medicalapp.Model.RdvModels.Rdv;
+import com.pillcheck.medicalapp.Model.RdvModels.RdvDAO;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.*;
+import javafx.scene.control.Label;
+import java.net.URL;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+public class StatisticsController implements Initializable {
 
-public class ParametreController implements Initializable {
+    // Labels
+    @FXML private Label totalPatientsLabel;
+    @FXML private Label PatientsLabel;
+    @FXML private Label totalTraitementsLabel;
+    @FXML private Label TraitementsLabel;
+    @FXML private Label totalRdvLabel;
+    @FXML private Label RdvLabel;
+
+    // Charts
+    @FXML private PieChart patientsChart;
+    @FXML private PieChart traitementsChart;
+    @FXML private BarChart<String, Number> rdvChart;
     
-     @FXML
+    @FXML
     private Button acceuilButton;
 
     @FXML
@@ -41,22 +60,12 @@ public class ParametreController implements Initializable {
     @FXML
     private Button parametreButton;
 
-    @FXML
-    private Button helpButton;
-
-    @FXML
-    private Button mainButton;
-
-    
-    @FXML
-    private void handleAddTraitementButton() {
-    // Code à exécuter lorsque le bouton "Ajouter traitement" est cliqué
-    System.out.println("Ajout traitement cliqué");
-}
-
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadPatientsStats();
+        loadTraitementsStats();
+        loadRdvStats();
+
         FontIcon icon2 = new FontIcon(FontAwesomeSolid.HOME);
         icon2.setIconSize(20);
         acceuilButton.setGraphic(icon2);
@@ -93,31 +102,54 @@ public class ParametreController implements Initializable {
         parametreButton.setText("");
     }
 
-    @FXML
-    private void openHelp() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HelpView.fxml"));
-           // FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/HelpView.fxml"));
-            Parent root = loader.load();
-            
-            Stage helpStage = new Stage();
-            helpStage.setTitle("Aide - PillCheck");
-            helpStage.setScene(new Scene(root, 600, 500));
-            helpStage.initModality(Modality.APPLICATION_MODAL);
-            helpStage.setResizable(false);
-            helpStage.show();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void loadPatientsStats() {
+        List<Patient> patients = PatientDAO.getAllPatients();
+        Map<String, Long> traitementCount = patients.stream()
+                .collect(Collectors.groupingBy(Patient::getNomTraitement, Collectors.counting()));
+
+        patientsChart.getData().clear();
+        for (Map.Entry<String, Long> entry : traitementCount.entrySet()) {
+            patientsChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
         }
+
+        totalPatientsLabel.setText("Total Patients:");
+        PatientsLabel.setText(String.valueOf(patients.size()));
     }
 
-    @FXML
-    private void handleMainButton() {
-        // Action pour le bouton principal
-        System.out.println("Bouton principal cliqué");
+    private void loadTraitementsStats() {
+        List<Traitement> traitements = TraitementDao.getAllTraitements();
+        Map<String, Long> etatCount = traitements.stream()
+                .collect(Collectors.groupingBy(Traitement::getETAT, Collectors.counting()));
+
+        traitementsChart.getData().clear();
+        for (Map.Entry<String, Long> entry : etatCount.entrySet()) {
+            traitementsChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        totalTraitementsLabel.setText("Total Traitements:");
+        TraitementsLabel.setText(String.valueOf(traitements.size()));
     }
-     @FXML
+
+    private void loadRdvStats() {
+        List<Rdv> rdvs = RdvDAO.getAllRdv(); // Assurez-vous que cette méthode existe et fonctionne
+        Map<String, Long> statutCount = rdvs.stream()
+                .collect(Collectors.groupingBy(Rdv::getStatut, Collectors.counting()));
+
+        rdvChart.getData().clear();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Statut des RDV");
+
+        for (Map.Entry<String, Long> entry : statutCount.entrySet()) {
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+
+        rdvChart.getData().add(series);
+
+        totalRdvLabel.setText("Total Rendez-vous:");
+        RdvLabel.setText(String.valueOf(rdvs.size()));
+    }
+    
+    @FXML
     void handleAcceuil(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
@@ -183,36 +215,4 @@ public class ParametreController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
-    void handleStatistics(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/View/StatisticsView.fxml"));
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void handleExporter(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ExporterView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Exporter les données - PillCheck");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }    
 }
-
-    
-
-   

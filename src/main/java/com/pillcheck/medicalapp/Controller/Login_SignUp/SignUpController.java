@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -33,6 +34,11 @@ public class SignUpController {
         String email = emailField.getText();
         String motDePasse = passwordField.getText();
 
+        
+        if (!isValidEmail(email)) {
+            showAlert("Format email invalide", "L'email doit contenir '@' et '.'");
+            return;
+        }
 
         User newUser = new User(nom, email, motDePasse);
         SignUpDAO dao = new SignUpDAO();
@@ -62,16 +68,33 @@ public class SignUpController {
     @FXML
     void handleAnnuler(ActionEvent event) {
         try {
+   
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/LoginUser.fxml"));
-            Parent root = loader.load();
+
+        
+            Pane root = new Pane(); 
+            loader.setRoot(root);
+
+            loader.load();
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("Error loading the Login Page: " + e.getMessage());
+            System.out.println("Error loading LoginUser.fxml: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+    private boolean isValidEmail(String email) {
+        return email != null && email.contains("@") && email.contains(".");
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

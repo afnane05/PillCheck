@@ -31,7 +31,11 @@ public class LoginController {
     void handleLogin(ActionEvent event) {
         String email = emailField.getText();
         String password = passwordField.getText();
-
+     
+        if (!isValidEmail(email)) {
+            showAlert("Format email invalide", "L'email doit contenir '@' et '.'");
+            return;
+        }
         User user = LoginDAO.getUserByEmailAndPassword(email, password);
         if (user != null) {
             Session.getInstance().setCurrentUser(user);
@@ -72,4 +76,16 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+    private boolean isValidEmail(String email) {
+        return email != null && email.contains("@") && email.contains(".")  ;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

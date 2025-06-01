@@ -85,7 +85,6 @@ public class PatientCardIconController {
     }
     
     @FXML
-
     private void handleDelete() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation de suppression");
@@ -97,7 +96,7 @@ public class PatientCardIconController {
             boolean success = PatientDAO.supprimerPatient(patient.getId());
             
         }
-}
+    }
 
 
     @FXML
@@ -107,8 +106,8 @@ public class PatientCardIconController {
             Scene scene = new Scene(loader.load());
 
             AddPatientFormController controller = loader.getController();
+            // Passer le patient complet avec son ID
             controller.prefillForm(patient); 
-            
             controller.setParentController(parentController); 
 
             Stage stage = new Stage();
@@ -121,6 +120,8 @@ public class PatientCardIconController {
             e.printStackTrace();
         }
     }
+
+
 
 
 }

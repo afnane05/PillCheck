@@ -35,7 +35,7 @@ public class TraitementCardIconController {
     @FXML private TextField MaladieField ;  
     @FXML private TextField DureeEstimeeField ;
     
-    @FXML private Button addTraitementButton ;
+    @FXML private Button ajouterTraitementButton ;
     @FXML private MenuItem deleteTraitement;
     @FXML private MenuItem modifyItem;
      @FXML private MenuButton optionsMenuButton ;
@@ -157,7 +157,6 @@ public class TraitementCardIconController {
         
       
     }
-
 
     
 

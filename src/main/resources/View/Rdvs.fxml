@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="475.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Rdv.DailyRdvController">
+   <children>
+      <TextField alignment="CENTER" editable="false" layoutX="118.0" layoutY="51.0" prefHeight="39.0" prefWidth="331.0" style="-fx-background-radius: 20; -fx-background-color: #e8e1e1;" text="Bonjour ,Voilà tes Rdvs du Jour:">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </TextField>
+      <ScrollPane fx:id="scrollPane" layoutX="37.0" layoutY="216.0" prefHeight="411.0" prefWidth="424.0" style="-fx-background-color: #e8e1e1;">
+         <content>
+            <FlowPane fx:id="rdvContainer" hgap="10.0" prefHeight="414.0" prefWidth="416.0" style="-fx-background-color: #e8e1e1;" vgap="10.0">
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <Label fx:id="dateLabel" alignment="CENTER" layoutX="79.0" layoutY="141.0" prefHeight="45.0" prefWidth="279.0" style="-fx-background-color: #e8e1e1; -fx-background-radius: 20;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Rdv.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="AddRdvButton" layoutX="382.0" layoutY="164.0" mnemonicParsing="false" onAction="#openFormulaireRdv" prefHeight="39.0" prefWidth="77.0" style="-fx-background-radius: 50; -fx-background-color: #aaf683;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" text="+Rdv">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

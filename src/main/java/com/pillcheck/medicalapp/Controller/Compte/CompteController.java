@@ -5,6 +5,7 @@ import com.pillcheck.medicalapp.Model.User;
 import com.pillcheck.medicalapp.Model.UserDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -141,41 +143,54 @@ public class CompteController implements Initializable {
             e.printStackTrace();
         }
     }
-    
-    @FXML
-    private void handleDeleteAccount(ActionEvent event) {
-        User currentUser = Session.getInstance().getCurrentUser();
+@FXML
+private void handleDeleteAccount(ActionEvent event) {
+    User currentUser = Session.getInstance().getCurrentUser();
 
-        if (currentUser != null) {
+    if (currentUser != null) {
+        // Confirmation dialog
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmation");
+        confirmAlert.setHeaderText("Supprimer le compte");
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+
+        // Wait for user response
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             int userId = currentUser.getId();
             boolean success = UserDAO.deleteUser(userId);
 
             if (success) {
                 Session.getInstance().clear();
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/LoginUser.fxml"));
-                    Parent root = loader.load();
 
-                    // Redirect to LoginUser.fxml by replacing the current scene
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/LoginUser.fxml"));
+
+
+                    Pane root = new Pane(); 
+                    loader.setRoot(root);
+
+                    loader.load();
+
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(root));
                     stage.show();
 
                 } catch (IOException e) {
+                    System.out.println("Error loading LoginUser.fxml: " + e.getMessage());
                     e.printStackTrace();
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Could not load the login screen.");
-                    alert.showAndWait();
                 }
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Account deletion failed.");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "La suppression du compte a échoué.");
                 alert.showAndWait();
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun utilisateur en session.");
-            alert.showAndWait();
         }
+    } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun utilisateur en session.");
+        alert.showAndWait();
     }
+}
+
     @FXML
     public void handleSignOut(ActionEvent event) {
         try {
@@ -246,6 +261,28 @@ public class CompteController implements Initializable {
             e.printStackTrace();
         }
     
+    }
+    @FXML
+    void handleRdv(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/RdvView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleStatistics(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/View/StatisticsView.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

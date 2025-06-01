@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="rdvPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCardClick" prefHeight="70.0" prefWidth="350.0" style="-fx-background-radius: 200; -fx-background-color: #aaf683;" styleClass="shiny-button" stylesheets="@../ButtonEffects.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Rdv.CircleRdv">
+   <children>
+      <Label fx:id="nomLabel" alignment="CENTER" layoutX="62.0" layoutY="2.0" prefHeight="35.0" prefWidth="242.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="statutLabel" alignment="CENTER" layoutX="62.0" layoutY="33.0" prefHeight="35.0" prefWidth="242.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <MenuButton contentDisplay="RIGHT" layoutX="295.0" layoutY="7.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="22.0" style="-fx-background-color: #aaf683;">
+         <items>
+            <MenuItem fx:id="modifyRdv" mnemonicParsing="false" onAction="#handleModify" text="Modifier" />
+            <MenuItem fx:id="deleteRdv" mnemonicParsing="false" onAction="#handleDelete" text="Supprimer" />
+         </items>
+      </MenuButton>
+   </children>
+</Pane>

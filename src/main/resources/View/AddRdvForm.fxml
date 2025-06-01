@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="321.0" style="-fx-background-color: #e8e1e1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pillcheck.medicalapp.Controller.Rdv.FormulaireRdvController">
+   <children>
+      <ImageView fitHeight="55.0" fitWidth="62.0" layoutX="18.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../RdvIcon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="73.0" layoutY="38.0" prefHeight="32.0" prefWidth="240.0" text="Formulaire du Rendez-Vous ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="motifRdvField" layoutX="125.0" layoutY="218.0" prefHeight="25.0" prefWidth="134.0" />
+      <Label layoutX="27.0" layoutY="214.0" prefHeight="32.0" prefWidth="92.0" text="Motif Rdv : ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="285.0" prefHeight="32.0" prefWidth="92.0" text="Statut : ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Line endX="495.0" layoutX="-176.0" layoutY="107.0" startX="174.5" />
+      <Button fx:id="SaveButton" layoutX="213.0" layoutY="353.0" mnemonicParsing="false" onAction="#EnregistrerRdv" prefHeight="32.0" prefWidth="85.0" style="-fx-background-radius: 50;" text="Enregistrer">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <ComboBox fx:id="statutComboBox" layoutX="125.0" layoutY="287.0" prefHeight="25.0" prefWidth="134.0" />
+      <Label layoutX="27.0" layoutY="145.0" prefHeight="32.0" prefWidth="92.0" text="Horaire : ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="timeComboBox" layoutX="125.0" layoutY="150.0" prefHeight="16.0" prefWidth="134.0" />
+   </children>
+</Pane>
