@@ -116,6 +116,7 @@ public class PatientController implements Initializable {
         refreshButton.setText("");
     }
 
+<<<<<<< HEAD
     private void setupSearchBar() {
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             filterPatients(newValue);
@@ -128,6 +129,22 @@ public class PatientController implements Initializable {
         if (searchText == null || searchText.isEmpty()) {
             for (Patient patient : allPatients) {
                 addPatientCard(patient);
+=======
+    private void loadPatientsFromDatabase() {
+        patientCardsContainer.getChildren().clear();
+        List<Patient> patients = PatientDAO.getAllPatients();
+        
+        for (Patient patient : patients) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCardIcon.fxml"));
+                Pane card = loader.load();
+                PatientCardIconController cardController = loader.getController();
+                cardController.setPatientInfo(patient, card);
+                cardController.setParentController(this); // Important: définir le parent controller
+                patientCardsContainer.getChildren().add(card);
+            } catch (IOException e) {
+                e.printStackTrace();
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
             }
         } else {
             String lowerCaseFilter = searchText.toLowerCase();
@@ -203,7 +220,11 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
     @FXML
     void handleCompte(ActionEvent event) {
         try {
@@ -215,7 +236,11 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
     @FXML
     void handleTraitement(ActionEvent event) {
         try {
@@ -251,6 +276,7 @@ public class PatientController implements Initializable {
             e.printStackTrace();
         }
     }
+    
     @FXML
     void handleRdv(ActionEvent event) {
         try {

@@ -23,20 +23,19 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 public class PatientCardIconController {
 
     @FXML private TextField nomField;
     @FXML private TextField prenomField;
     @FXML private Pane cardContainer;
-    @FXML private Button addPatientButton ;  
+    @FXML private Button addPatientButton;  
     @FXML private MenuItem deletePatient;
     @FXML private MenuItem modifyItem;
     @FXML private MenuButton optionsMenuButton;
 
     private Patient patient;
     private PatientController parentController;
-    private Node rootNode;  // Add this field
+    private Node rootNode;
 
     public void setPatientInfo(Patient patient, Node rootNode) {
         this.patient = patient;
@@ -45,13 +44,10 @@ public class PatientCardIconController {
         prenomField.setText(patient.getPrenom());
     }
 
-
-
     public void setParentController(PatientController parentController) {
         this.parentController = parentController;
     }
 
-    // Let the parent set the root node reference (needed to replace it later)
     public void setRootNode(Node root) {
         this.rootNode = root;
     }
@@ -59,7 +55,6 @@ public class PatientCardIconController {
     @FXML
     private void initialize() {
         cardContainer.setOnMouseClicked(this::handleCardClick);
-
     }
 
     @FXML
@@ -68,16 +63,14 @@ public class PatientCardIconController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/PatientCards.fxml"));
             Scene scene = new Scene(loader.load());
 
-            // Get the controller and set patient data
             PatientCardsController controller = loader.getController();
             controller.setPatientInfo(patient);
 
-            // Create and show a new stage
             Stage stage = new Stage();
             stage.setTitle("Détails du Patient");
             stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
-            stage.showAndWait(); // Wait until this window is closed
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,10 +87,15 @@ public class PatientCardIconController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             boolean success = PatientDAO.supprimerPatient(patient.getId());
-            
+            if (success && parentController != null) {
+                parentController.handleRefresh(); // Actualiser la liste après suppression
+            }
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
 
     @FXML
     private void handleModify() {
@@ -120,8 +118,12 @@ public class PatientCardIconController {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
 
 
 
 }
+=======
+}
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44

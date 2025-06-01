@@ -31,11 +31,19 @@ public class LoginController {
     void handleLogin(ActionEvent event) {
         String email = emailField.getText();
         String password = passwordField.getText();
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
         if (!isValidEmail(email)) {
             showAlert("Format email invalide", "L'email doit contenir '@' et '.'");
             return;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
         User user = LoginDAO.getUserByEmailAndPassword(email, password);
         if (user != null) {
             Session.getInstance().setCurrentUser(user);
@@ -54,14 +62,7 @@ public class LoginController {
                 e.printStackTrace();
             }
         } else {
-            
-            System.out.println("Email ou mot de passe invalide !");
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de connexion");
-            alert.setHeaderText(null);
-            alert.setContentText("Email ou mot de passe invalide !");
-            alert.showAndWait();
+            showAlert("Erreur de connexion", "Email ou mot de passe invalide !");
         }
     }
 
@@ -76,6 +77,10 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
     private boolean isValidEmail(String email) {
         return email != null && email.contains("@") && email.contains(".")  ;
     }
@@ -87,5 +92,9 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44

@@ -106,14 +106,15 @@ public class HelpViewController implements Initializable {
         showAnswerDialog("Comment ajouter un patient ?", 
             "Pour ajouter un patient :\n\n" +
             "1. Cliquez sur 'Mes Patients' dans le menu de navigation\n" +
-            "2. Cliquez sur le bouton 'Ajouter Patient'\n" +
+            "2. Cliquez sur le bouton 'Ajouter Patient'  a droite en haut\n" +
             "3. Remplissez le formulaire avec les informations du patient :\n" +
             "   - Nom et prénom\n" +
+            "   - CIN et SEXE !\n"+
             "   - Date de naissance\n" +
             "   - Numéro de téléphone\n" +
-            "   - Adresse email\n" +
-            "   - Adresse\n" +
-            "4. Cliquez sur 'Enregistrer' pour confirmer\n\n" +
+            "   - Telephone\n" +
+            "   - Etat\n" +
+            "4. Cliquez sur 'ajouter' pour confirmer\n\n" +
             "Le patient sera automatiquement ajouté à votre liste de patients.");
     }
     
@@ -122,17 +123,16 @@ public class HelpViewController implements Initializable {
         showAnswerDialog("Comment ajouter un traitement ?", 
             "Pour ajouter un traitement :\n\n" +
             "1. Allez dans 'Mes Traitements' depuis le menu principal\n" +
-            "2. Cliquez sur 'Ajouter Traitement'\n" +
-            "3. Sélectionnez le patient concerné\n" +
-            "4. Remplissez les informations du traitement :\n" +
-            "   - Nom du médicament\n" +
+            "2. Cliquez sur 'Ajouter Traitement' en haut droite \n" +
+            "3. Remplissez les informations du traitement :\n" +
+            "   - Type et Nom \n" +
+            "   - Maladie et Description\n" +
+            "   - date debut/fin \n" +
             "   - Dosage\n" +
             "   - Fréquence de prise\n" +
-            "   - Durée du traitement\n" +
-            "   - Instructions spéciales\n" +
-            "5. Définissez les rappels si nécessaire\n" +
-            "6. Validez en cliquant sur 'Enregistrer'\n\n" +
-            "Le traitement sera ajouté au dossier du patient.");
+            "   - Durée du traitement estimee\n" +
+            "   - Posologie et etat\n" );
+           
     }
     
     @FXML

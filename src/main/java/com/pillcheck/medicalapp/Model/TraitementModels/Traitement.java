@@ -29,9 +29,13 @@ public class Traitement {
     }
     public Traitement(){}
     public int getId() { return id; } 
+<<<<<<< HEAD
         public void setId(int id) {
         this.id = id;
     }
+=======
+    public void setid(int id) {this.id=id;}
+>>>>>>> 7fec08144c9572542af357eae6250e70760e4f44
     public String  getNOM_TRAITEMENT() { return NOM_TRAITEMENT; }
     public void setNOM_TRAITEMENT(String NOM_TRAITEMENT) { this.NOM_TRAITEMENT = NOM_TRAITEMENT; }
 
